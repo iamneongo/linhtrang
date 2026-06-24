@@ -8,6 +8,8 @@
   --color-brand-blue: #005BBB;
   --color-bg-dark: #245B4A;
   --color-surface-card: #327863;
+  --color-text-secondary: #c5cdd6;
+  --color-text-muted: #94a3b8;
 }
 
 @layer utilities {
@@ -28,28 +30,30 @@
   }
 }
 
-/* Base custom styles */
 html {
   scroll-behavior: smooth;
 }
 
 ::selection {
   background-color: #E50914;
-  color: #white;
+  color: white;
 }
 
-/* Custom scrollbar */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #245B4A;
+  background: #1a3d33;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #3d6b5a;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

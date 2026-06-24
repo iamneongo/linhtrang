@@ -78,7 +78,7 @@ export default function Footer() {
                   <h4 className="font-headline text-sm font-bold text-white mb-2 uppercase group-hover:text-primary-red transition-all">
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-[#aeb4be] leading-relaxed">
+                  <p className="text-[11px] text-text-secondary leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -104,7 +104,7 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           {/* Main columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/5 text-xs text-[#aeb4be]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/5 text-xs text-text-secondary">
             
             {/* Column 1: Intro (3 Cols) */}
             <div className="lg:col-span-3 space-y-6">
@@ -113,7 +113,7 @@ export default function Footer() {
                 layout="horizontal"
                 height="38px"
               />
-              <p className="text-[#aeb4be] leading-relaxed pr-2">
+              <p className="text-text-secondary leading-relaxed pr-2">
                 Linh Trang Home tự hào là đơn vị hàng đầu cung cấp giải pháp, thương mại, tư vấn và thi công trọn gói gạch ốp lát cao cấp, thiết bị nhà tắm, thiết bị thông minh bồn tắm và phụ kiện hoàn thiện mỹ học nội ngoại thất tại Việt Nam. 
               </p>
               
@@ -122,21 +122,21 @@ export default function Footer() {
                 <a
                   href="#facebook"
                   title="Theo dõi chúng tôi trên Facebook"
-                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-[#aeb4be] hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
+                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-text-secondary hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
                 >
                   <Facebook className="w-4 h-4" />
                 </a>
                 <a
                   href="#youtube"
                   title="Kênh Youtube của Linh Trang Home"
-                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-[#aeb4be] hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
+                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-text-secondary hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
                 >
                   <Youtube className="w-4 h-4" />
                 </a>
                 <a
                   href="#share"
                   title="Chia sẻ liên kết"
-                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-[#aeb4be] hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
+                  className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-text-secondary hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
                 >
                   <Share2 className="w-4 h-4" />
                 </a>
@@ -148,7 +148,7 @@ export default function Footer() {
               <h5 className="font-headline text-xs font-bold text-white uppercase tracking-widest border-l-2 border-primary-red pl-3 h-fit">
                 VỀ CHÚNG TÔI
               </h5>
-              <ul className="space-y-3 font-semibold text-[#aeb4be]">
+              <ul className="space-y-3 font-semibold text-text-secondary">
                 <li><a href="#about" className="hover:text-primary-red transition-colors">Giới thiệu công ty</a></li>
                 <li><a href="#about" className="hover:text-primary-red transition-colors">Tầm nhìn - Sứ mệnh</a></li>
                 <li><a href="#about" className="hover:text-primary-red transition-colors">Đội ngũ kỹ sư</a></li>
@@ -162,7 +162,7 @@ export default function Footer() {
               <h5 className="font-headline text-xs font-bold text-white uppercase tracking-widest border-l-2 border-primary-red pl-3 h-fit">
                 CHÍNH SÁCH
               </h5>
-              <ul className="space-y-3 font-semibold text-[#aeb4be]">
+              <ul className="space-y-3 font-semibold text-text-secondary">
                 <li><a href="#policy-1" className="hover:text-primary-red transition-colors">Chính sách bảo hành vàng</a></li>
                 <li><a href="#policy-2" className="hover:text-primary-red transition-colors">Chính sách đổi trả minh bạch</a></li>
                 <li><a href="#policy-3" className="hover:text-primary-red transition-colors">Chính sách giao nhận vận chuyển</a></li>
@@ -178,7 +178,7 @@ export default function Footer() {
                   <h5 className="font-headline text-xs font-bold text-white uppercase tracking-widest border-l-2 border-primary-red pl-3 h-fit">
                     LIÊN HỆ
                   </h5>
-                  <ul className="space-y-3 text-[#aeb4be]">
+                  <ul className="space-y-3 text-text-secondary">
                     <li className="flex items-start gap-2.5 leading-relaxed">
                       <MapPin className="w-5 h-5 text-primary-red flex-shrink-0 mt-0.5" />
                       <span>81 Hùng Vương, Phường Lâm Viên, TP. Đà Lạt, Lâm Đồng</span>
@@ -220,7 +220,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom Copyright and credits */}
-          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-[#aeb4be] uppercase tracking-wider font-semibold">
+          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-text-secondary uppercase tracking-wider font-semibold">
             <p>© {currentYear} LINH TRANG HOME, All rights reserved.</p>
             <p className="flex items-center gap-1">
               <span>Thiết kế &amp; phát triển nghệ thuật bởi</span>

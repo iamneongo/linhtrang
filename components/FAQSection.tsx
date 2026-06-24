@@ -76,14 +76,14 @@ export default function FAQSection() {
         
         {/* Header Title Section */}
         <div className="text-center mb-16 space-y-4">
-          <span className="font-headline text-xs font-black tracking-widest text-[#aeb4be] uppercase bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-full inline-block">
+          <span className="font-headline text-xs font-black tracking-widest text-text-secondary uppercase bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-full inline-block">
             HỎI ĐÁP & HỖ TRỢ KHÁCH HÀNG
           </span>
           <h2 className="font-headline text-3xl sm:text-4xl font-black text-white leading-tight">
             GIẢI ĐÁP <span className="text-primary-red text-glow">THẮC MẮC</span> THƯỜNG GẶP
           </h2>
           <div className="w-16 h-1 bg-primary-red mx-auto rounded-full"></div>
-          <p className="text-[#aeb4be] max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+          <p className="text-text-secondary max-w-xl mx-auto text-sm leading-relaxed">
             Chúng tôi tổng hợp các câu hỏi phổ biến nhất về thiết bị vệ sinh cao cấp, gạch tinh thạch nghệ thuật, chính sách bảo hành chuyên nghiệp và lộ trình bàn giao.
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function FAQSection() {
                 className={`px-5 py-3 rounded-full text-xs font-headline font-semibold flex items-center gap-2.5 transition-all duration-300 border cursor-pointer ${
                   isActive
                     ? 'bg-primary-red text-white border-primary-red shadow-lg shadow-primary-red/20'
-                    : 'bg-[#327863]/20 text-[#aeb4be] border-white/5 hover:border-white/15 hover:text-white'
+                    : 'bg-[#327863]/20 text-text-secondary border-white/5 hover:border-white/15 hover:text-white'
                 }`}
               >
                 <IconComponent className="w-4 h-4" />
@@ -139,7 +139,7 @@ export default function FAQSection() {
                         {faq.question}
                       </span>
                     </div>
-                    <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#aeb4be]">
+                    <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-text-secondary">
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
                           isOpen ? 'rotate-180 text-primary-red' : ''
@@ -156,7 +156,7 @@ export default function FAQSection() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.25, ease: 'easeInOut' }}
                       >
-                        <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-[#aeb4be] border-t border-white/5 bg-[#327863]/10 leading-relaxed font-normal">
+                        <div className="px-6 pb-5 pt-1 text-sm text-text-secondary border-t border-white/5 bg-[#327863]/10 leading-relaxed font-normal">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -182,7 +182,7 @@ export default function FAQSection() {
               <MessageCircle className="w-5 h-5 text-primary-red" />
               Bạn còn câu hỏi khác cần giải đáp?
             </h4>
-            <p className="text-[#aeb4be] text-xs max-w-md">
+            <p className="text-text-secondary text-sm max-w-md">
               Liên hệ ngay bộ phận hỗ trợ dự án 24/7 của chúng tôi để được giải đáp cặn kẽ cũng như tư vấn thiết kế trọn gói bồn tắm, gạch ốp lát.
             </p>
           </div>

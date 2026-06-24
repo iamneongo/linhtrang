@@ -268,7 +268,7 @@ export default function ChatBot() {
                     MIA Trợ Lý Ảo
                     <span className="text-[9px] bg-emerald-500/10 text-emerald-300 px-1.5 py-0.5 rounded-full font-sans lowercase font-normal border border-emerald-500/20">Online</span>
                   </h3>
-                  <p className="text-[10px] text-[#aeb4be] mt-1">Linh Trang Home • Thiết kế & Báo giá</p>
+                  <p className="text-[10px] text-text-secondary mt-1">Linh Trang Home • Thiết kế & Báo giá</p>
                 </div>
               </div>
               
@@ -337,7 +337,7 @@ export default function ChatBot() {
                       </div>
                       
                       {/* Message timestamp metadata */}
-                      <span className={`text-[9px] text-[#aeb4be] mt-1 px-1 ${!isBot ? 'text-right' : 'text-left'}`}>
+                      <span className={`text-[9px] text-text-secondary mt-1 px-1 ${!isBot ? 'text-right' : 'text-left'}`}>
                         {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>
@@ -345,7 +345,7 @@ export default function ChatBot() {
                     {/* User icon avatar */}
                     {!isBot && (
                       <div className="w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center shrink-0 mt-1">
-                        <User className="w-3.5 h-3.5 text-[#aeb4be]" />
+                        <User className="w-3.5 h-3.5 text-text-secondary" />
                       </div>
                     )}
                   </div>
@@ -359,7 +359,7 @@ export default function ChatBot() {
                     <Bot className="w-3.5 h-3.5 text-[#E50914]" />
                   </div>
                   <div className="flex flex-col">
-                    <div className="rounded-2xl rounded-tl-none px-4 py-3 bg-[#327863]/30 border border-white/5 text-[#aeb4be] shadow-inner">
+                    <div className="rounded-2xl rounded-tl-none px-4 py-3 bg-[#327863]/30 border border-white/5 text-text-secondary shadow-inner">
                       <div className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />

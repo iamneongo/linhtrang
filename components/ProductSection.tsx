@@ -56,7 +56,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
         {/* Title & Link to show all */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
           <div>
-            <span className="font-headline text-xs font-bold tracking-widest text-[#aeb4be] uppercase">
+            <span className="font-headline text-xs font-bold tracking-widest text-text-secondary uppercase">
               KIẾN TẠO PHÂN KHÚC THƯỢNG LƯU
             </span>
             <h2 className="font-headline text-3xl md:text-4xl font-extrabold uppercase mt-1 leading-tight tracking-tight">
@@ -73,7 +73,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
         </div>
 
         {/* Categories Grid (6 Card Layout) */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
           {categories.map((cat, idx) => (
             <motion.div
               key={cat.id}
@@ -102,7 +102,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                   <h3 className="font-headline text-sm font-bold text-white uppercase group-hover:text-primary-red transition-colors duration-300">
                     {cat.name}
                   </h3>
-                  <p className="text-[10px] text-white/50 uppercase tracking-wider font-semibold mt-1">
+                  <p className="text-[10px] text-text-secondary uppercase tracking-wider font-semibold mt-1">
                     {cat.badge}
                   </p>
                 </div>
@@ -139,7 +139,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                     <h3 className="font-headline text-xl md:text-2xl font-bold text-white uppercase text-glow">
                       {selectedCategory.name}
                     </h3>
-                    <p className="text-xs text-[#aeb4be] mt-0.5">{selectedCategory.description}</p>
+                    <p className="text-xs text-text-secondary mt-0.5">{selectedCategory.description}</p>
                   </div>
                 </div>
                 <button
@@ -196,7 +196,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                         
                         {/* Brand / Origin filter */}
                         <div className="flex items-center gap-2 w-full sm:w-auto flex-1 sm:flex-initial">
-                          <span className="text-white/40 font-medium whitespace-nowrap">Thương hiệu:</span>
+                          <span className="text-text-secondary font-medium whitespace-nowrap">Thương hiệu:</span>
                           <select
                             value={selectedBrand}
                             onChange={(e) => setSelectedBrand(e.target.value)}
@@ -211,7 +211,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
 
                         {/* Material filter */}
                         <div className="flex items-center gap-2 w-full sm:w-auto flex-1 sm:flex-initial">
-                          <span className="text-white/40 font-medium whitespace-nowrap">Chất liệu:</span>
+                          <span className="text-text-secondary font-medium whitespace-nowrap">Chất liệu:</span>
                           <select
                             value={selectedMaterial}
                             onChange={(e) => setSelectedMaterial(e.target.value)}
@@ -252,7 +252,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                           <h4 className="font-headline text-base font-bold text-white mb-2">
                             Không tìm thấy sản phẩm phù hợp
                           </h4>
-                          <p className="text-xs text-white/50 max-w-sm leading-relaxed mb-6">
+                          <p className="text-xs text-text-secondary max-w-sm leading-relaxed mb-6">
                             Vui lòng thay đổi từ khóa tìm kiếm hoặc đặt lại các bộ lọc về ban đầu để hiển thị đầy đủ dải sản phẩm.
                           </p>
                           <button
@@ -292,21 +292,21 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                                 <h4 className="font-headline text-sm font-bold text-white group-hover/prod:text-primary-red transition-colors mb-2 min-h-[40px] line-clamp-2">
                                   {prod.name}
                                 </h4>
-                                <p className="text-xs text-white/50 line-clamp-2 mb-4 pr-1 flex-1">
+                                <p className="text-xs text-text-secondary line-clamp-2 mb-4 pr-1 flex-1">
                                   {prod.description}
                                 </p>
 
                                 <div className="space-y-1.5 border-t border-white/5 pt-3.5 mb-5 text-[11px]">
                                   <div className="flex justify-between">
-                                    <span className="text-[#aeb4be]">Xuất xứ:</span>
+                                    <span className="text-text-secondary">Xuất xứ:</span>
                                     <span className="text-white font-semibold">{prod.origin}</span>
                                   </div>
                                   <div className="flex justify-between">
-                                    <span className="text-[#aeb4be]">Chất liệu:</span>
+                                    <span className="text-text-secondary">Chất liệu:</span>
                                     <span className="text-white select-all truncate max-w-[150px]" title={prod.material}>{prod.material}</span>
                                   </div>
                                   <div className="flex justify-between">
-                                    <span className="text-[#aeb4be]">Kích thước:</span>
+                                    <span className="text-text-secondary">Kích thước:</span>
                                     <span className="text-white select-all">{prod.size}</span>
                                   </div>
                                 </div>
@@ -392,7 +392,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                     
                     {/* Copyable code button */}
                     <div className="flex gap-2 items-center mb-5 bg-[#245B4A] border border-white/5 py-2 px-3.5 rounded-xl w-fit">
-                      <span className="text-xs text-[#aeb4be]">Mã sản phẩm:</span>
+                      <span className="text-xs text-text-secondary">Mã sản phẩm:</span>
                       <span className="text-xs font-mono font-bold text-white select-all">{selectedProduct.code}</span>
                       <button
                         onClick={() => handleCopyCode(selectedProduct.code)}
@@ -408,25 +408,25 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
                       </button>
                     </div>
 
-                    <p className="text-xs md:text-sm text-[#aeb4be] leading-relaxed mb-6">
+                    <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-6">
                       {selectedProduct.description}
                     </p>
 
                     <div className="space-y-3 bg-[#245B4A]/25 p-4 rounded-xl border border-white/5 mb-8 text-xs">
                       <div className="flex justify-between items-center pb-2 border-b border-white/5">
-                        <span className="text-white/60">Xuất xứ / Brand:</span>
+                        <span className="text-text-secondary">Xuất xứ / Brand:</span>
                         <span className="text-white font-bold uppercase">{selectedProduct.origin}</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-white/5">
-                        <span className="text-white/60">Vật liệu cấu thành:</span>
+                        <span className="text-text-secondary">Vật liệu cấu thành:</span>
                         <span className="text-white text-right">{selectedProduct.material}</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-white/5">
-                        <span className="text-white/60">Kích thước chuẩn:</span>
+                        <span className="text-text-secondary">Kích thước chuẩn:</span>
                         <span className="text-white font-mono">{selectedProduct.size}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-white/60">Đơn giá bán sỉ/lẻ:</span>
+                        <span className="text-text-secondary">Đơn giá bán sỉ/lẻ:</span>
                         <span className="text-primary-red font-bold text-sm">Theo khối lượng dự án (Liên hệ)</span>
                       </div>
                     </div>

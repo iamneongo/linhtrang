@@ -71,7 +71,7 @@ export default function Header({
             : 'bg-transparent py-5'
         }`}
       >
-        <div className="flex justify-between items-center w-full px-4 md:px-8 max-w-7xl mx-auto">
+          <div className="flex justify-between items-center w-full px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
           {/* Logo */}
           <a
             id="brand-logo"
@@ -253,7 +253,7 @@ export default function Header({
             >
               {/* Box title & close buttons */}
               <div className="flex justify-between items-center mb-4">
-                <span className="font-headline text-xs tracking-widest text-[#aeb4be] uppercase font-bold">
+                <span className="font-headline text-xs tracking-widest text-text-secondary uppercase font-bold">
                   Tìm kiếm thông minh tại Linh Trang Home
                 </span>
                 <button
@@ -322,7 +322,7 @@ export default function Header({
                             >
                               <div>
                                 <span className="text-xs font-semibold block">{cat.name}</span>
-                                <span className="text-[10px] text-white/50">{cat.description}</span>
+                                <span className="text-[10px] text-text-secondary">{cat.description}</span>
                               </div>
                               <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all text-primary-red" />
                             </button>
@@ -357,7 +357,7 @@ export default function Header({
                                 />
                                 <div>
                                   <span className="text-xs font-semibold block">{proj.title}</span>
-                                  <span className="text-[10px] text-white/50">
+                                  <span className="text-[10px] text-text-secondary">
                                     {proj.style} • {proj.location}
                                   </span>
                                 </div>

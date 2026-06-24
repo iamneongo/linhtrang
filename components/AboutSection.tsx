@@ -90,7 +90,7 @@ export default function AboutSection() {
               VỀ <span className="text-primary-red">LINH TRANG</span> HOME
             </h2>
             
-            <p className="text-sm md:text-base text-[#aeb4be] leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
               Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp gạch ốp lát cao cấp, thiết bị vệ sinh nhập khẩu và nội thất tinh tế hàng đầu, Linh Trang Home luôn nỗ lực không ngừng nghỉ để kiến tạo nên những công trình đẳng cấp quốc tế, đem lại sự an tâm tuyệt đối cho khách hàng và đối tác xây dựng.
             </p>
 
@@ -104,7 +104,7 @@ export default function AboutSection() {
                   <h4 className="font-headline text-sm font-bold text-white uppercase tracking-wider mb-1">
                     Sản phẩm chính hãng 100%
                   </h4>
-                  <p className="text-xs text-[#aeb4be]">
+                  <p className="text-xs text-text-secondary">
                     Toàn bộ vật liệu, thiết bị vệ sinh được tuyển chọn khắt khe trực tiếp từ hệ thống đối tác quốc tế chất lượng uy tín nhất.
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export default function AboutSection() {
                   <h4 className="font-headline text-sm font-bold text-white uppercase tracking-wider mb-1">
                     Giá cả đi đôi với chất lượng
                   </h4>
-                  <p className="text-xs text-[#aeb4be]">
+                  <p className="text-xs text-text-secondary">
                     Chính sách giá minh bạch, tối ưu, ổn định bền vững giúp chủ đầu tư kiểm soát chi phí thi công xây dựng an tâm nhất.
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export default function AboutSection() {
                   <h4 className="font-headline text-sm font-bold text-white uppercase tracking-wider mb-1">
                     Chính sách hậu mãi & bảo hành vàng
                   </h4>
-                  <p className="text-xs text-[#aeb4be]">
+                  <p className="text-xs text-text-secondary">
                     Linh Trang Home đồng hành trọn đời mọi dự án. Đội ngũ kỹ thuật túc trực 24/7 giải quyết mọi rủi ro về vật liệu dứt điểm siêu tốc.
                   </p>
                 </div>
@@ -163,7 +163,7 @@ export default function AboutSection() {
                 <h5 className="font-headline text-xs font-bold text-white uppercase tracking-widest mb-1.5">
                   {item.label}
                 </h5>
-                <p className="text-[10px] text-[#aeb4be] leading-normal">{item.description}</p>
+                <p className="text-xs text-text-secondary leading-normal">{item.description}</p>
               </motion.div>
             );
           })}

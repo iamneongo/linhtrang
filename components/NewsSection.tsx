@@ -96,7 +96,7 @@ export default function NewsSection({
           <div className="lg:col-span-8 flex flex-col">
             <div className="flex justify-between items-end border-b border-white/10 pb-4 mb-8">
               <div>
-                <span className="font-headline text-xs font-bold tracking-widest text-[#aeb4be] uppercase">
+                <span className="font-headline text-xs font-bold tracking-widest text-text-secondary uppercase">
                   BLOG THIẾT KẾ VÀ KIẾN TRÚC
                 </span>
                 <h2 className="font-headline text-2xl md:text-3xl font-extrabold uppercase mt-1 text-white">
@@ -128,7 +128,7 @@ export default function NewsSection({
                     />
                   </div>
                   
-                  <div className="flex items-center gap-3 text-xs text-[#aeb4be] mb-2 font-mono">
+                  <div className="flex items-center gap-3 text-xs text-text-secondary mb-2 font-mono">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-primary-red" />
                       {post.date}
@@ -143,7 +143,7 @@ export default function NewsSection({
                   <h3 className="font-headline text-base font-bold text-white group-hover:text-primary-red transition-colors mb-2 line-clamp-2 leading-snug">
                     {post.title}
                   </h3>
-                  <p className="text-xs text-[#aeb4be] line-clamp-2 leading-relaxed flex-1">
+                  <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed flex-1">
                     {post.summary}
                   </p>
 
@@ -164,7 +164,7 @@ export default function NewsSection({
               <h3 className="font-headline text-xl font-bold tracking-tight text-white mb-2 text-glow">
                 TƯ VẤN MIỄN PHÍ
               </h3>
-              <p className="text-xs text-[#aeb4be] leading-relaxed mb-6">
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
                 Để lại thông tin bên dưới, thiết kế sư hàng đầu từ Linh Trang Home sẽ chủ động kết nối để tư vấn trọn gói thiết kế nhà 3D miễn phí cho bạn.
               </p>
 
@@ -207,7 +207,7 @@ export default function NewsSection({
                       <button
                         type="button"
                         onClick={onClearQuoteFill}
-                        className="absolute bottom-3 right-3 text-[10px] text-[#aeb4be] hover:text-white bg-white/5 hover:bg-white/10 py-1 px-2 rounded border border-white/10 flex items-center gap-1 transition-all"
+                        className="absolute bottom-3 right-3 text-[10px] text-text-secondary hover:text-white bg-white/5 hover:bg-white/10 py-1 px-2 rounded border border-white/10 flex items-center gap-1 transition-all"
                         title="Bỏ tự động điền sản phẩm"
                       >
                         <X className="w-3 h-3" /> Bỏ gắn SP
@@ -243,14 +243,14 @@ export default function NewsSection({
                   <div className="w-7 h-7 bg-white/5 rounded-full flex items-center justify-center text-primary-red">
                     <User className="w-4 h-4" />
                   </div>
-                  <span className="text-[#aeb4be]">Đại sứ: </span>
+                  <span className="text-text-secondary">Đại sứ: </span>
                   <span className="text-white font-bold">0977 247 623</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-7 h-7 bg-white/5 rounded-full flex items-center justify-center text-primary-red">
                     <Send className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-white/60">info@linhtranghome.vn</span>
+                  <span className="text-text-secondary">info@linhtranghome.vn</span>
                 </div>
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function NewsSection({
               <h4 className="font-headline text-lg font-bold text-white uppercase mb-2">
                 ĐĂNG KÝ THÀNH CÔNG!
               </h4>
-              <p className="text-xs text-[#aeb4be] leading-relaxed mb-6">
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
                 Cảm ơn quý khách đã tin cậy nâng tầm không gian sống cùng Linh Trang Home. 
                 Đội ngũ đại sứ thương hiệu từ chi nhánh gần nhất sẽ trực tiếp liên hệ tư vấn chuyên môn trong vòng 15-30 phút nữa.
               </p>
@@ -350,7 +350,7 @@ export default function NewsSection({
                 </div>
 
                 {/* Meta details */}
-                <div className="flex items-center gap-4 text-xs text-[#aeb4be] mb-6 border-b border-white/5 pb-4 font-mono">
+                <div className="flex items-center gap-4 text-xs text-text-secondary mb-6 border-b border-white/5 pb-4 font-mono">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4 text-primary-red" />
                     Đăng ngày {selectedPost.date}
@@ -363,7 +363,7 @@ export default function NewsSection({
                 </div>
 
                 {/* Article Content with gorgeous style */}
-                <div className="text-[#aeb4be] text-xs md:text-sm leading-relaxed whitespace-pre-line pr-1 space-y-4">
+                <div className="text-text-secondary text-xs md:text-sm leading-relaxed whitespace-pre-line pr-1 space-y-4">
                   {/* Since content has custom rich formatting we can display it clearly */}
                   <div className="prose prose-invert max-w-none">
                     {selectedPost.content}
@@ -371,7 +371,7 @@ export default function NewsSection({
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-white/10 flex justify-between items-center text-xs">
-                  <span className="text-[#aeb4be]">Đóng góp bài viết? Hãy liên hệ qua mail chúng tôi.</span>
+                  <span className="text-text-secondary">Đóng góp bài viết? Hãy liên hệ qua mail chúng tôi.</span>
                   <button
                     onClick={() => setSelectedPost(null)}
                     className="flex items-center gap-1.5 font-headline font-bold text-primary-red uppercase"
