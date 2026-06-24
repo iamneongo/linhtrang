@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Linh Trang Home",
+  "description": "Nâng Tầm Không Gian Sống Của Bạn - Gạch ốp lát, Thiết bị vệ sinh \u0026 Nội thất cao cấp",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
