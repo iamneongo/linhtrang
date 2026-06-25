@@ -89,7 +89,7 @@ export default function Footer() {
       </section>
 
       {/* Corporate Luxury Footer Section */}
-      <footer className="bg-[#327863] pt-20 pb-8 border-t border-white/10 relative overflow-hidden">
+      <footer className="bg-[#1c473a] pt-20 pb-8 border-t border-white/10 relative overflow-hidden">
         
         {/* Floating Arrow To Top bubble */}
         <div className="absolute right-8 top-8 z-20">
