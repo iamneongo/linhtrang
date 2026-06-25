@@ -216,35 +216,41 @@ export default function HomePage() {
           </button>
         </div>
 
-        <div className="absolute bottom-8 left-4 md:left-8 z-20 flex items-center gap-6">
-          <div className="flex gap-2.5">
-            {heroSlides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentSlide === idx ? 'w-8 bg-primary-red' : 'w-3 bg-white/40 hover:bg-white/60'
-                }`}
-                title={`Chuyển đến slide ${idx + 1}`}
-              />
-            ))}
-          </div>
+        <div className="absolute bottom-8 left-0 right-0 z-20">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-end">
+            <div className="flex items-center gap-5 bg-black/35 backdrop-blur-md border border-white/10 py-2.5 px-4 rounded-full shadow-lg shadow-black/20">
+              <div className="flex gap-2.5">
+                {heroSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      currentSlide === idx ? 'w-8 bg-primary-red' : 'w-3 bg-white/40 hover:bg-white/60'
+                    }`}
+                    title={`Chuyển đến slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
 
-          <div className="hidden sm:flex p-1 rounded-full bg-black/40 backdrop-blur-md border border-white/5 gap-1">
-            <button
-              onClick={prevSlide}
-              className="p-1.5 rounded-full text-white/75 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
-              title="Slide trước"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="p-1.5 rounded-full text-white/75 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
-              title="Slide sau"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              <div className="w-[1px] h-3.5 bg-white/15 hidden sm:block" />
+
+              <div className="hidden sm:flex gap-0.5">
+                <button
+                  onClick={prevSlide}
+                  className="p-1 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+                  title="Slide trước"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="p-1 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+                  title="Slide sau"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
