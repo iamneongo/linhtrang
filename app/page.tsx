@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -82,6 +82,7 @@ function SearchParamsHandler({ setQuoteProduct }: { setQuoteProduct: (val: { nam
 }
 
 export default function HomePage() {
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const [quoteProduct, setQuoteProduct] = useState({ name: '', code: '' });
@@ -173,7 +174,7 @@ export default function HomePage() {
         <SearchParamsHandler setQuoteProduct={setQuoteProduct} />
       </Suspense>
       <Header
-        onCategoryClick={() => handleNavigateToSection('products')}
+        onCategoryClick={(id) => router.push(`/category/${id}`)}
         onProjectClick={() => handleNavigateToSection('projects')}
         onNavigateToSection={handleNavigateToSection}
         activeSection={activeSection}

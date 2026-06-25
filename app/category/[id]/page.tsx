@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Search, X, ShoppingBag, ArrowRight, HelpCircle } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 
@@ -16,6 +16,78 @@ function DynamicIcon({ name, className }: { name: string; className?: string }) 
   const IconComponent = (LucideIcons as any)[name];
   if (!IconComponent) return <HelpCircle className={className} />;
   return <IconComponent className={className} />;
+}
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface CustomSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+  options: Option[];
+}
+
+function CustomSelect({ value, onChange, options }: CustomSelectProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  
+  const selectedOption = options.find(o => o.value === value) || options[0];
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={dropdownRef} className="relative w-full z-20">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full bg-[#327863]/40 hover:bg-[#327863]/60 text-white font-semibold border border-white/10 rounded-xl px-4 py-3 text-xs flex justify-between items-center transition-all cursor-pointer shadow-sm active:scale-99"
+      >
+        <span className="truncate">{selectedOption.label}</span>
+        <LucideIcons.ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 4, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute left-0 right-0 top-full bg-[#1c473a]/95 backdrop-blur-xl border border-white/15 rounded-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar z-30 py-1.5"
+          >
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => {
+                  onChange(opt.value);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2.5 text-xs font-semibold flex items-center justify-between transition-colors cursor-pointer ${
+                  value === opt.value
+                    ? 'bg-primary-red/10 text-primary-red'
+                    : 'text-white/80 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                <span className="truncate">{opt.label}</span>
+                {value === opt.value && <LucideIcons.Check className="w-3.5 h-3.5 text-primary-red shrink-0" />}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function CategoryDetailPage() {
@@ -52,6 +124,16 @@ export default function CategoryDetailPage() {
   // Extract unique filters
   const uniqueBrands = Array.from(new Set(products.map((p) => p.origin)));
   const uniqueMaterials = Array.from(new Set(products.map((p) => p.material)));
+
+  const brandOptions = [
+    { value: 'Tất cả', label: 'Tất cả thương hiệu' },
+    ...uniqueBrands.map((b) => ({ value: b, label: b })),
+  ];
+
+  const materialOptions = [
+    { value: 'Tất cả', label: 'Tất cả chất liệu' },
+    ...uniqueMaterials.map((m) => ({ value: m, label: m })),
+  ];
 
   const filteredProducts = products.filter((prod) => {
     const matchesBrand = selectedBrand === 'Tất cả' || prod.origin === selectedBrand;
@@ -147,31 +229,21 @@ export default function CategoryDetailPage() {
               {/* Brand filter (3 cols) */}
               <div className="lg:col-span-3 flex items-center gap-3">
                 <span className="text-xs text-text-secondary font-medium whitespace-nowrap">Thương hiệu:</span>
-                <select
+                <CustomSelect
                   value={selectedBrand}
-                  onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="w-full bg-[#327863]/40 text-white font-semibold border border-white/10 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-primary-red cursor-pointer transition-all"
-                >
-                  <option value="Tất cả">Tất cả thương hiệu</option>
-                  {uniqueBrands.map((brand) => (
-                    <option key={brand} value={brand}>{brand}</option>
-                  ))}
-                </select>
+                  onChange={setSelectedBrand}
+                  options={brandOptions}
+                />
               </div>
 
               {/* Material filter (3 cols) */}
               <div className="lg:col-span-3 flex items-center gap-3">
                 <span className="text-xs text-text-secondary font-medium whitespace-nowrap">Chất liệu:</span>
-                <select
+                <CustomSelect
                   value={selectedMaterial}
-                  onChange={(e) => setSelectedMaterial(e.target.value)}
-                  className="w-full bg-[#327863]/40 text-white font-semibold border border-white/10 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-primary-red cursor-pointer transition-all truncate"
-                >
-                  <option value="Tất cả">Tất cả chất liệu</option>
-                  {uniqueMaterials.map((mat) => (
-                    <option key={mat} value={mat}>{mat}</option>
-                  ))}
-                </select>
+                  onChange={setSelectedMaterial}
+                  options={materialOptions}
+                />
               </div>
 
               {/* Reset button (1 col) */}
