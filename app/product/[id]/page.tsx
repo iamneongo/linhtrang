@@ -58,6 +58,14 @@ export default function ProductDetailPage() {
   };
 
   const handleNavigateToSection = (sectionId: string) => {
+    if (sectionId === 'projects') {
+      router.push('/projects');
+      return;
+    }
+    if (sectionId === 'news') {
+      router.push('/news');
+      return;
+    }
     router.push(`/#${sectionId}`);
   };
 
@@ -68,7 +76,7 @@ export default function ProductDetailPage() {
 
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={() => handleNavigateToSection('projects')}
+        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection=""
       />

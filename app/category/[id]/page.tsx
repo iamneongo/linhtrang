@@ -50,7 +50,7 @@ function CustomSelect({ value, onChange, options }: CustomSelectProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-[#327863]/40 hover:bg-[#327863]/60 text-white font-semibold border border-white/10 rounded-xl px-4 py-3 text-xs flex justify-between items-center transition-all cursor-pointer shadow-sm active:scale-99"
+        className="w-full bg-white/[0.04] hover:bg-white/[0.08] text-white font-semibold border border-white/10 rounded-xl px-4 py-3 text-xs flex justify-between items-center transition-all cursor-pointer shadow-sm active:scale-99"
       >
         <span className="truncate">{selectedOption.label}</span>
         <LucideIcons.ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -63,7 +63,7 @@ function CustomSelect({ value, onChange, options }: CustomSelectProps) {
             animate={{ opacity: 1, y: 4, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute left-0 right-0 top-full bg-[#1c473a]/95 backdrop-blur-xl border border-white/15 rounded-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar z-30 py-1.5"
+            className="absolute left-0 right-0 top-full mt-2 bg-white border border-black/[0.08] rounded-xl shadow-2xl max-h-60 overflow-y-auto custom-scrollbar z-30 p-1.5"
           >
             {options.map((opt) => (
               <button
@@ -73,10 +73,10 @@ function CustomSelect({ value, onChange, options }: CustomSelectProps) {
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-4 py-2.5 text-xs font-semibold flex items-center justify-between transition-colors cursor-pointer ${
+                className={`w-full text-left px-3.5 py-2.5 text-xs font-medium flex items-center justify-between transition-all cursor-pointer rounded-lg ${
                   value === opt.value
-                    ? 'bg-primary-red/10 text-primary-red'
-                    : 'text-white/80 hover:bg-white/5 hover:text-white'
+                    ? 'bg-primary-red/[0.06] text-primary-red font-semibold'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
                 <span className="truncate">{opt.label}</span>
@@ -148,6 +148,14 @@ export default function CategoryDetailPage() {
   });
 
   const handleNavigateToSection = (sectionId: string) => {
+    if (sectionId === 'projects') {
+      router.push('/projects');
+      return;
+    }
+    if (sectionId === 'news') {
+      router.push('/news');
+      return;
+    }
     router.push(`/#${sectionId}`);
   };
 
@@ -158,77 +166,104 @@ export default function CategoryDetailPage() {
 
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={() => handleNavigateToSection('projects')}
+        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection=""
       />
 
       {/* Hero Category Banner */}
-      <section className="relative h-[45vh] min-h-[350px] w-full flex items-center justify-center overflow-hidden">
+      <section className="relative h-[55vh] min-h-[420px] w-full flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src={category.imageUrl}
             alt={category.name}
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="w-full h-full object-cover brightness-[0.22] scale-105 transition-transform duration-[12000ms] ease-out"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#245B4A] via-black/40 to-transparent"></div>
+          {/* Subtle architectural grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] opacity-70"></div>
+          {/* Radial vignette gradient overlay for focus and depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(36,91,74,0.15)_0%,#245B4A_100%)]"></div>
+          {/* Soft top-to-bottom dark gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#245B4A]"></div>
         </div>
 
         {/* Content */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full flex flex-col items-center text-center pt-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full flex flex-col items-center text-center pt-20">
           <Link
             href="/#products"
-            className="inline-flex items-center gap-2 text-xs font-headline font-bold text-white/60 hover:text-primary-red transition-all uppercase tracking-widest mb-4 group cursor-pointer"
+            className="inline-flex items-center gap-2 text-[10px] font-headline font-bold text-white/50 hover:text-primary-red hover:border-primary-red/30 transition-all uppercase tracking-[0.2em] mb-8 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 cursor-pointer group shadow-md backdrop-blur-md"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> Quay lại danh mục
           </Link>
           
-          <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-5 text-white shadow-xl">
-            <DynamicIcon name={category.iconName} className="w-8 h-8" />
+          {/* Glowing Badge for category icon */}
+          <div className="relative mb-6 group">
+            {/* Outer golden red glowing aura */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#E50914]/20 to-[#FFD700]/25 blur-md group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#9B0000] via-[#E50914] to-[#FFD700] flex items-center justify-center text-white shadow-[0_8px_30px_rgba(229,9,20,0.35)] border border-white/20 relative hover:scale-105 transition-all duration-300">
+              <DynamicIcon name={category.iconName} className="w-7 h-7 text-white animate-pulse" />
+            </div>
           </div>
 
-          <h1 className="font-headline text-3xl md:text-5xl font-extrabold uppercase text-glow tracking-tight text-white mb-3">
+          <span className="font-headline text-[10px] font-bold tracking-[0.3em] text-[#FFD700] uppercase mb-3">
+            BỘ SƯU TẬP KIỆT TÁC CAO CẤP
+          </span>
+
+          <h1 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-wide bg-gradient-to-r from-white via-[#FFF5E6] to-white bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(0,0,0,0.6)] mb-4">
             {category.name}
           </h1>
-          <p className="text-xs md:text-sm text-text-secondary max-w-2xl leading-relaxed">
+          
+          <p className="font-sans text-xs md:text-sm text-white/80 max-w-2xl leading-relaxed mb-6 text-center px-4 font-normal tracking-wide drop-shadow-sm">
             {category.description}
           </p>
+
+          <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[9px] uppercase font-bold tracking-[0.15em] text-white/85 shadow-lg">
+            <span className="w-2 h-2 bg-[#E50914] rounded-full animate-pulse"></span>
+            <span>{products.length} dòng sản phẩm nhập khẩu độc quyền</span>
+          </div>
         </div>
       </section>
 
       {/* Main showcase area */}
       <section className="py-16 bg-[#245B4A] border-t border-white/5 relative flex-1">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-16">
           
-          {/* Filters & Search Block */}
-          <div className="bg-[#327863]/30 border border-white/10 rounded-2xl p-6 mb-12 shadow-xl backdrop-blur-md">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          {/* Filters & Search Block (Ultra-Premium Glassmorphism) */}
+          <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 mb-12 shadow-[0_25px_60px_rgba(0,0,0,0.35)] backdrop-blur-2xl relative z-30">
+            {/* Subtle inner decorative glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-red/5 blur-[90px] rounded-full pointer-events-none"></div>
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#FFD700]/5 blur-[80px] rounded-full pointer-events-none"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
               
               {/* Search input (5 cols) */}
-              <div className="lg:col-span-5 relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
-                <input
-                  type="text"
-                  placeholder="Tìm sản phẩm theo tên, mã code..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#327863]/40 text-white placeholder-white/40 border border-white/10 rounded-xl pl-11 pr-10 py-3 text-sm focus:outline-none focus:border-primary-red transition-all shadow-inner"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
+              <div className="md:col-span-5 flex flex-col gap-2">
+                <span className="text-[10px] font-headline font-bold uppercase tracking-widest text-white/40">Từ khóa tìm kiếm</span>
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/45" />
+                  <input
+                    type="text"
+                    placeholder="Tìm sản phẩm theo tên, mã code..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-white/[0.04] text-white placeholder-white/30 border border-white/10 rounded-xl pl-11 pr-10 py-3 text-xs focus:outline-none focus:border-[#E50914]/40 focus:ring-1 focus:ring-[#E50914]/40 transition-all shadow-inner"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Brand filter (3 cols) */}
-              <div className="lg:col-span-3 flex items-center gap-3">
-                <span className="text-xs text-text-secondary font-medium whitespace-nowrap">Thương hiệu:</span>
+              <div className="md:col-span-3 flex flex-col gap-2">
+                <span className="text-[10px] font-headline font-bold uppercase tracking-widest text-white/40">Thương hiệu</span>
                 <CustomSelect
                   value={selectedBrand}
                   onChange={setSelectedBrand}
@@ -237,8 +272,8 @@ export default function CategoryDetailPage() {
               </div>
 
               {/* Material filter (3 cols) */}
-              <div className="lg:col-span-3 flex items-center gap-3">
-                <span className="text-xs text-text-secondary font-medium whitespace-nowrap">Chất liệu:</span>
+              <div className="md:col-span-3 flex flex-col gap-2">
+                <span className="text-[10px] font-headline font-bold uppercase tracking-widest text-white/40">Chất liệu</span>
                 <CustomSelect
                   value={selectedMaterial}
                   onChange={setSelectedMaterial}
@@ -247,18 +282,21 @@ export default function CategoryDetailPage() {
               </div>
 
               {/* Reset button (1 col) */}
-              <div className="lg:col-span-1 flex justify-end">
-                {(selectedBrand !== 'Tất cả' || selectedMaterial !== 'Tất cả' || searchQuery !== '') && (
+              <div className="md:col-span-1 flex justify-center md:justify-end">
+                {(selectedBrand !== 'Tất cả' || selectedMaterial !== 'Tất cả' || searchQuery !== '') ? (
                   <button
                     onClick={() => {
                       setSelectedBrand('Tất cả');
                       setSelectedMaterial('Tất cả');
                       setSearchQuery('');
                     }}
-                    className="text-primary-red hover:underline font-bold tracking-wide uppercase text-[10px] cursor-pointer flex items-center gap-1 py-2"
+                    title="Xóa bộ lọc"
+                    className="h-10 px-4 bg-[#E50914]/10 hover:bg-[#E50914] text-white rounded-xl text-[10px] font-headline font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 border border-[#E50914]/20 w-full md:w-auto justify-center"
                   >
-                    Xóa lọc
+                    <X className="w-3.5 h-3.5" /> Xóa
                   </button>
+                ) : (
+                  <div className="h-10 w-0 md:w-4"></div>
                 )}
               </div>
 

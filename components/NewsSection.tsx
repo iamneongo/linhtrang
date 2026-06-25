@@ -1,7 +1,8 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, User, Send, X, CheckCircle, ArrowRight, BookOpen } from 'lucide-react';
-import { ConsultationRequest, BlogPost } from '../types';
+import { Calendar, User, Send, X, CheckCircle, ArrowRight } from 'lucide-react';
+import { ConsultationRequest } from '../types';
 import { blogPosts } from '../data';
 
 interface NewsSectionProps {
@@ -15,13 +16,14 @@ export default function NewsSection({
   quoteFillCode,
   onClearQuoteFill
 }: NewsSectionProps) {
+  const router = useRouter();
+
   const [formData, setFormData] = useState<ConsultationRequest>({
     fullName: '',
     phone: '',
     message: ''
   });
   
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,7 +36,6 @@ export default function NewsSection({
         message: `Tôi muốn nhận báo giá, thông tin khuyến mãi và tư vấn lắp đặt chi tiết cho sản phẩm: "${quoteFillProduct}" (Mã SP: ${quoteFillCode}). Xin cảm ơn!`
       }));
       
-      // Select the textarea and highlight it if possible
       const element = document.getElementById('consultation-textarea');
       if (element) {
         element.focus();
@@ -52,7 +53,6 @@ export default function NewsSection({
     e.preventDefault();
     setErrorMessage('');
 
-    // Field validity checks
     if (!formData.fullName.trim()) {
       setErrorMessage('Vui lòng nhập họ và tên của bạn.');
       return;
@@ -66,7 +66,6 @@ export default function NewsSection({
       return;
     }
     
-    // Simple phone match
     const cleanPhone = formData.phone.trim().replace(/\s+/g, '');
     if (cleanPhone.length < 9 || isNaN(Number(cleanPhone))) {
       setErrorMessage('Số điện thoại không hợp lệ (vui lòng nhập ít nhất 9 chữ số).');
@@ -75,7 +74,6 @@ export default function NewsSection({
 
     setIsSubmitting(true);
 
-    // Simulate server ingestion
     setTimeout(() => {
       setIsSubmitting(false);
       setShowSuccessModal(true);
@@ -104,10 +102,10 @@ export default function NewsSection({
                 </h2>
               </div>
               <button
-                onClick={() => setSelectedPost(blogPosts[0])}
-                className="text-xs font-headline font-semibold text-white/75 hover:text-primary-red transition-colors uppercase tracking-wider"
+                onClick={() => router.push('/news')}
+                className="text-xs font-headline font-semibold text-white/75 hover:text-primary-red transition-colors uppercase tracking-wider bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-full hover:bg-white/10"
               >
-                Nhật ký thiết kế
+                Xem tất cả tin tức
               </button>
             </div>
 
@@ -115,41 +113,41 @@ export default function NewsSection({
               {blogPosts.map((post) => (
                 <div
                   key={post.id}
-                  onClick={() => setSelectedPost(post)}
-                  className="group cursor-pointer flex flex-col bg-white border border-slate-100 p-4 rounded-xl shadow-md hover:shadow-xl hover:border-primary-red/20 transition-all duration-300"
+                  onClick={() => router.push(`/news?id=${post.id}`)}
+                  className="group cursor-pointer flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl hover:bg-white/[0.05] hover:border-primary-red/20 transition-all duration-300 shadow-lg hover:shadow-2xl"
                 >
-                  <div className="rounded-lg overflow-hidden mb-4 aspect-video bg-black/20">
+                  <div className="rounded-xl overflow-hidden mb-4 aspect-video bg-black/20">
                     <img
                       src={post.imageUrl}
                       alt={post.title}
                       loading="lazy"
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                     />
                   </div>
                   
-                  <div className="flex items-center gap-3 text-xs text-slate-500 mb-2 font-mono">
+                  <div className="flex items-center gap-3 text-xs text-white/60 mb-2 font-mono">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-primary-red" />
                       {post.date}
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <User className="w-3.5 h-3.5 text-[#245B4A]" />
+                      <User className="w-3.5 h-3.5 text-[#FFD700]" />
                       {post.author}
                     </span>
                   </div>
 
-                  <h3 className="font-headline text-base font-bold text-[#245B4A] group-hover:text-primary-red transition-colors mb-2 line-clamp-2 leading-snug">
+                  <h3 className="font-headline text-base font-bold text-white group-hover:text-primary-red transition-colors mb-2 line-clamp-2 leading-snug">
                     {post.title}
                   </h3>
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed flex-1">
+                  <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed flex-1">
                     {post.summary}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-primary-red font-bold uppercase tracking-wider">
+                  <div className="mt-4 pt-4 border-t border-white/5 flex items-center gap-1.5 text-xs text-primary-red font-bold uppercase tracking-wider group-hover:text-white transition-colors">
                     <span>Đọc tiếp</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 </div>
               ))}
@@ -299,87 +297,6 @@ export default function NewsSection({
               >
                 Đồng ý / Quay lại trang chủ
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Broad Content Blog Article Modal (High-Fidelity Reader) */}
-      <AnimatePresence>
-        {selectedPost && (
-          <motion.div
-            id="blog-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#245B4A]/48 backdrop-blur-xl flex items-center justify-center p-4"
-          >
-            <motion.div
-              id="blog-modal"
-              initial={{ scale: 0.94, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.94, opacity: 0 }}
-              className="bg-[#327863] border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8 max-w-3xl w-full max-h-[85vh] flex flex-col relative"
-            >
-              <button
-                onClick={() => setSelectedPost(null)}
-                className="absolute top-5 right-5 p-1.5 rounded-full bg-black/40 text-white/70 hover:text-white hover:bg-white/5 transition-all cursor-pointer z-10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex-1 overflow-y-auto pr-1">
-                {/* Visual Cover Header */}
-                <div className="rounded-xl overflow-hidden aspect-video bg-black/20 mb-6 border border-white/5 relative">
-                  <img
-                    src={selectedPost.imageUrl}
-                    alt={selectedPost.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                    <div>
-                      <span className="px-2.5 py-1 text-[9px] font-bold font-headline rounded bg-primary-red text-white uppercase tracking-widest">
-                        KIẾN THỨC NỘI THẤT
-                      </span>
-                      <h3 className="font-headline text-lg md:text-xl font-bold text-white uppercase tracking-tight mt-2 text-glow">
-                        {selectedPost.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Meta details */}
-                <div className="flex items-center gap-4 text-xs text-text-secondary mb-6 border-b border-white/5 pb-4 font-mono">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4 text-primary-red" />
-                    Đăng ngày {selectedPost.date}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <User className="w-4 h-4 text-brand-blue" />
-                    Viết bởi {selectedPost.author}
-                  </span>
-                </div>
-
-                {/* Article Content with gorgeous style */}
-                <div className="text-text-secondary text-xs md:text-sm leading-relaxed whitespace-pre-line pr-1 space-y-4">
-                  {/* Since content has custom rich formatting we can display it clearly */}
-                  <div className="prose prose-invert max-w-none">
-                    {selectedPost.content}
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-white/10 flex justify-between items-center text-xs">
-                  <span className="text-text-secondary">Đóng góp bài viết? Hãy liên hệ qua mail chúng tôi.</span>
-                  <button
-                    onClick={() => setSelectedPost(null)}
-                    className="flex items-center gap-1.5 font-headline font-bold text-primary-red uppercase"
-                  >
-                    <span>Quay lại</span> <BookOpen className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         )}

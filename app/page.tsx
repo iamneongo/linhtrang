@@ -98,6 +98,17 @@ export default function HomePage() {
   }, []);
 
   const handleNavigateToSection = (sectionId: string) => {
+    const standaloneRoutes: Record<string, string> = {
+      projects: '/projects',
+      news: '/news',
+      about: '/about',
+      faq: '/faq',
+      consultation: '/contact',
+    };
+    if (standaloneRoutes[sectionId]) {
+      router.push(standaloneRoutes[sectionId]);
+      return;
+    }
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
@@ -175,7 +186,7 @@ export default function HomePage() {
       </Suspense>
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={() => handleNavigateToSection('projects')}
+        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection={activeSection}
       />

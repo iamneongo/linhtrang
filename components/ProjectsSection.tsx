@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Calendar, Compass, Layers, X, ArrowRight } from 'lucide-react';
-import { Project } from '../types';
+import { motion } from 'motion/react';
+import { useRouter } from 'next/navigation';
+import { MapPin, ArrowRight } from 'lucide-react';
 import { projects } from '../data';
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const router = useRouter();
 
   return (
     <section id="projects" className="py-20 bg-white text-slate-900 relative">
@@ -23,10 +22,10 @@ export default function ProjectsSection() {
             <div className="w-16 h-1 bg-[#E50914] mt-3 rounded-full"></div>
           </div>
           <button 
-            onClick={() => setSelectedProject(projects[0])}
-            className="text-xs font-headline font-bold tracking-wider hover:text-primary-red transition-all flex items-center gap-2 group cursor-pointer text-slate-800"
+            onClick={() => router.push('/projects')}
+            className="text-xs font-headline font-bold tracking-wider hover:text-primary-red transition-all flex items-center gap-2 group cursor-pointer text-slate-800 bg-slate-50 border border-slate-200/80 px-5 py-2.5 rounded-full shadow-sm"
           >
-            CHI TIẾT MẪU KIẾN TRÚC <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#E50914]" />
+            XEM TẤT CẢ DỰ ÁN <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-[#E50914]" />
           </button>
         </div>
 
@@ -39,7 +38,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08, duration: 0.5 }}
-              onClick={() => setSelectedProject(proj)}
+              onClick={() => router.push(`/projects?id=${proj.id}`)}
               className="group cursor-pointer flex flex-col"
             >
               {/* Product background with scale hover */}
@@ -74,108 +73,6 @@ export default function ProjectsSection() {
         </div>
 
       </div>
-
-      {/* High-fidelity Architectural Project Details Dialog Popup Overlay */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            id="project-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#245B4A]/45 backdrop-blur-md flex items-center justify-center p-4"
-          >
-            <motion.div
-              id="project-detail"
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              className="w-full max-w-4xl bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 md:p-8 relative text-slate-900 overflow-hidden max-h-[90vh] flex flex-col"
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-1.5 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 hover:bg-slate-200 transition-all cursor-pointer z-10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex-1 overflow-y-auto pr-1">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  
-                  {/* Image Showcase frame */}
-                  <div className="md:col-span-7 rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-md">
-                    <img
-                      src={selectedProject.imageUrl}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-
-                  {/* Project Specifications detail sheet */}
-                  <div className="md:col-span-5 flex flex-col justify-center">
-                    <span className="font-headline text-[10px] text-[#E50914] font-extrabold tracking-widest uppercase mb-1">
-                      Công trình bàn giao thực tế
-                    </span>
-                    <h3 className="font-headline text-xl md:text-2xl font-bold text-[#245B4A] leading-tight mb-4">
-                      {selectedProject.title}
-                    </h3>
-
-                    {/* Meta values */}
-                    <div className="grid grid-cols-2 gap-4 border-y border-slate-155 py-4 mb-6 text-xs text-slate-700">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-[#E50914] flex-shrink-0" />
-                        <div>
-                          <p className="text-[10px] text-slate-400 font-semibold uppercase">Vị trí địa điểm</p>
-                          <p className="font-bold text-slate-800">{selectedProject.location}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-[#E50914] flex-shrink-0" />
-                        <div>
-                          <p className="text-[10px] text-slate-400 font-semibold uppercase">Năm hoàn thành</p>
-                          <p className="font-bold text-slate-800">{selectedProject.year}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <Compass className="w-4 h-4 text-[#E50914] flex-shrink-0" />
-                        <div>
-                          <p className="text-[10px] text-slate-400 font-semibold uppercase">Quy mô diện tích</p>
-                          <p className="font-bold text-slate-800">{selectedProject.area}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <Layers className="w-4 h-4 text-[#E50914] flex-shrink-0" />
-                        <div>
-                          <p className="text-[10px] text-slate-400 font-semibold uppercase">Phong cách thiết kế</p>
-                          <p className="font-bold text-slate-800">{selectedProject.style}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-[#5e3f3b] text-xs leading-relaxed mb-6">
-                      {selectedProject.description}
-                    </p>
-
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="w-full py-3.5 text-center font-headline font-bold text-xs tracking-wider uppercase rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 transition-all cursor-pointer"
-                    >
-                      Quay lại bộ sưu tập
-                    </button>
-                  </div>
-
-                </div>
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
