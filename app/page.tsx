@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,7 +17,7 @@ import NewsSection from '@/components/NewsSection';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 
-import { HERO_URL } from '@/data';
+import { HERO_URL, productsByCategoryId } from '@/data';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -49,6 +50,37 @@ const heroSlides = [
   },
 ];
 
+function SearchParamsHandler({ setQuoteProduct }: { setQuoteProduct: (val: { name: string; code: string }) => void }) {
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    const quoteCode = searchParams.get('quote');
+    if (quoteCode) {
+      let foundProduct = null;
+      for (const catId in productsByCategoryId) {
+        const prod = productsByCategoryId[catId].find(p => p.code === quoteCode);
+        if (prod) {
+          foundProduct = prod;
+          break;
+        }
+      }
+      
+      if (foundProduct) {
+        setQuoteProduct({ name: foundProduct.name, code: foundProduct.code });
+        const element = document.getElementById('consultation');
+        if (element) {
+          setTimeout(() => {
+            const topOffset = element.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: topOffset, behavior: 'smooth' });
+          }, 300);
+        }
+      }
+    }
+  }, [searchParams, setQuoteProduct]);
+
+  return null;
+}
+
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
@@ -71,11 +103,6 @@ export default function HomePage() {
       const topOffset = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top: topOffset, behavior: 'smooth' });
     }
-  };
-
-  const handleProductSelectForQuote = (productName: string, productCode: string) => {
-    setQuoteProduct({ name: productName, code: productCode });
-    handleNavigateToSection('consultation');
   };
 
   const handleClearQuoteFill = () => {
@@ -142,6 +169,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#245B4A] text-[#ffdad5] select-none font-sans overflow-x-hidden antialiased flex flex-col">
+      <Suspense fallback={null}>
+        <SearchParamsHandler setQuoteProduct={setQuoteProduct} />
+      </Suspense>
       <Header
         onCategoryClick={() => handleNavigateToSection('products')}
         onProjectClick={() => handleNavigateToSection('projects')}
@@ -263,7 +293,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <ProductSection onProductSelectForQuote={handleProductSelectForQuote} />
+      <ProductSection />
       <AboutSection />
       <FAQSection />
       <ProjectsSection />
