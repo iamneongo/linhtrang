@@ -116,7 +116,7 @@ export default function NewsSection({
                 <div
                   key={post.id}
                   onClick={() => setSelectedPost(post)}
-                  className="group cursor-pointer flex flex-col bg-[#327863]/20 border border-white/5 p-4 rounded-xl hover:border-primary-red/20 hover:bg-[#327863]/30 transition-all duration-300"
+                  className="group cursor-pointer flex flex-col bg-white border border-slate-100 p-4 rounded-xl shadow-md hover:shadow-xl hover:border-primary-red/20 transition-all duration-300"
                 >
                   <div className="rounded-lg overflow-hidden mb-4 aspect-video bg-black/20">
                     <img
@@ -128,26 +128,26 @@ export default function NewsSection({
                     />
                   </div>
                   
-                  <div className="flex items-center gap-3 text-xs text-text-secondary mb-2 font-mono">
+                  <div className="flex items-center gap-3 text-xs text-slate-500 mb-2 font-mono">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-primary-red" />
                       {post.date}
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <User className="w-3.5 h-3.5 text-brand-blue" />
+                      <User className="w-3.5 h-3.5 text-[#245B4A]" />
                       {post.author}
                     </span>
                   </div>
 
-                  <h3 className="font-headline text-base font-bold text-white group-hover:text-primary-red transition-colors mb-2 line-clamp-2 leading-snug">
+                  <h3 className="font-headline text-base font-bold text-[#245B4A] group-hover:text-primary-red transition-colors mb-2 line-clamp-2 leading-snug">
                     {post.title}
                   </h3>
-                  <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed flex-1">
+                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed flex-1">
                     {post.summary}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-white/5 flex items-center gap-1.5 text-xs text-primary-red font-bold uppercase tracking-wider">
+                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-primary-red font-bold uppercase tracking-wider">
                     <span>Đọc tiếp</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>

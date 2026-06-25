@@ -100,15 +100,18 @@ export default function Header({
                     e.preventDefault();
                     onNavigateToSection(item.id);
                   }}
-                  className={`font-headline text-xs tracking-wider transition-colors py-2 flex items-center gap-1 font-semibold ${
+                  className={`font-headline text-xs tracking-wider transition-colors py-2 flex items-center gap-1 font-semibold relative ${
                     activeSection === item.id || (item.id === 'products' && activeSection.startsWith('products'))
-                      ? 'text-primary-red'
-                      : 'text-white hover:text-primary-red'
+                      ? 'text-white'
+                      : 'text-white/60 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {item.hasDropdown && (
                     <span className="text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-300">▼</span>
+                  )}
+                  {(activeSection === item.id || (item.id === 'products' && activeSection.startsWith('products'))) && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary-red rounded-full shadow-sm shadow-primary-red/50"></span>
                   )}
                 </a>
 
@@ -116,7 +119,8 @@ export default function Header({
                 {item.hasDropdown && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-[#327863] border border-white/10 rounded-xl py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-2xl z-50">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 bg-[#327863] border-l border-t border-white/10 rotate-45"></div>
-                    <div className="relative z-10 px-4 py-2 text-glow font-headline text-[10px] text-primary-red tracking-widest font-bold border-b border-white/5 uppercase mb-2">
+                    <div className="relative z-10 px-4 py-2 font-headline text-[10px] text-white/90 tracking-widest font-bold border-b border-white/5 uppercase mb-2 flex items-center gap-1.5">
+                      <span className="w-1 h-3.5 bg-primary-red rounded-sm inline-block"></span>
                       Danh mục sản phẩm
                     </div>
                     {categories.map((cat) => (
@@ -127,7 +131,7 @@ export default function Header({
                           e.preventDefault();
                           onCategoryClick(cat.id);
                         }}
-                        className="block px-4 py-2.5 text-xs text-white/80 hover:bg-white/5 hover:text-primary-red transition-all flex justify-between items-center group/item rounded-lg mx-2"
+                        className="block px-4 py-2.5 text-xs text-white/80 hover:bg-white/5 hover:text-white transition-all flex justify-between items-center group/item rounded-lg mx-2"
                       >
                         <span>{cat.name}</span>
                         <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover/item:opacity-100 -translate-x-2 group-hover/item:translate-x-0 transition-all text-primary-red" />
@@ -155,7 +159,7 @@ export default function Header({
             <a
               id="phone-btn"
               href="tel:0977247623"
-              className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-red/10 border border-primary-red/30 text-primary-red font-headline font-semibold text-xs tracking-wider hover:bg-primary-red hover:text-white hover:border-primary-red transition-all duration-300"
+              className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-red text-white font-headline font-semibold text-xs tracking-wider hover:bg-[#c0000c] transition-all duration-300 shadow-md shadow-primary-red/20"
             >
               <Phone className="w-3.5 h-3.5 fill-current" />
               0977 247 623
@@ -195,10 +199,13 @@ export default function Header({
                       onNavigateToSection(item.id);
                     }}
                     className={`font-headline text-sm tracking-wider font-semibold py-1 border-b border-white/5 flex justify-between items-center ${
-                      activeSection === item.id ? 'text-primary-red' : 'text-white'
+                      activeSection === item.id ? 'text-white' : 'text-white/60'
                     }`}
                   >
                     <span>{item.label}</span>
+                    {activeSection === item.id && (
+                      <span className="w-1.5 h-1.5 bg-primary-red rounded-full shadow-sm shadow-primary-red/50"></span>
+                    )}
                   </a>
 
                   {item.hasDropdown && (
@@ -212,7 +219,7 @@ export default function Header({
                             setIsMobileMenuOpen(false);
                             onCategoryClick(cat.id);
                           }}
-                          className="text-xs text-white/60 hover:text-primary-red transition-colors py-1 block"
+                          className="text-xs text-white/60 hover:text-white transition-colors py-1 block"
                         >
                           {cat.name}
                         </a>

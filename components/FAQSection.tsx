@@ -80,7 +80,7 @@ export default function FAQSection() {
             HỎI ĐÁP & HỖ TRỢ KHÁCH HÀNG
           </span>
           <h2 className="font-headline text-3xl sm:text-4xl font-black text-white leading-tight">
-            GIẢI ĐÁP <span className="text-primary-red text-glow">THẮC MẮC</span> THƯỜNG GẶP
+            GIẢI ĐÁP THẮC MẮC THƯỜNG GẶP
           </h2>
           <div className="w-16 h-1 bg-primary-red mx-auto rounded-full"></div>
           <p className="text-text-secondary max-w-xl mx-auto text-sm leading-relaxed">
@@ -134,15 +134,15 @@ export default function FAQSection() {
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-start gap-3.5">
-                      <HelpCircle className="w-5 h-5 text-primary-red flex-shrink-0 mt-0.5" />
-                      <span className="font-headline text-sm sm:text-base font-bold text-white leading-snug group-hover:text-primary-red">
+                      <HelpCircle className="w-5 h-5 text-white/60 flex-shrink-0 mt-0.5" />
+                      <span className="font-headline text-sm sm:text-base font-bold text-white leading-snug">
                         {faq.question}
                       </span>
                     </div>
                     <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-text-secondary">
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
-                          isOpen ? 'rotate-180 text-primary-red' : ''
+                          isOpen ? 'rotate-180 text-white' : ''
                         }`}
                       />
                     </div>
@@ -173,13 +173,13 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-primary-red/10 to-[#005BBB]/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden"
+          className="mt-16 p-6 sm:p-8 rounded-3xl bg-[#327863]/30 border border-white/5 border-l-4 border-l-primary-red flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-xl"
         >
-          <div className="absolute top-0 right-0 w-48 h-48 bg-primary-red/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
           
           <div className="space-y-2 text-center sm:text-left">
             <h4 className="font-headline text-base sm:text-lg font-bold text-white flex items-center gap-2 justify-center sm:justify-start">
-              <MessageCircle className="w-5 h-5 text-primary-red" />
+              <MessageCircle className="w-5 h-5 text-white/90" />
               Bạn còn câu hỏi khác cần giải đáp?
             </h4>
             <p className="text-text-secondary text-sm max-w-md">

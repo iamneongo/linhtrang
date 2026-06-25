@@ -45,16 +45,16 @@ export default function Footer() {
   return (
     <>
       {/* "Vì sao chọn Linh Trang Home" Section (5-Grid Layout) */}
-      <section className="py-20 bg-[#245B4A] border-t border-white/5 relative overflow-hidden">
+      <section className="py-20 bg-white border-t border-slate-100 relative overflow-hidden">
         {/* Visual glow backdrop for footer header */}
-        <div className="absolute top-0 right-1/4 w-[250px] h-[250px] bg-brand-blue/5 blur-[90px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-0 right-1/4 w-[250px] h-[250px] bg-[#245B4A]/5 blur-[90px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-16">
-            <span className="font-headline text-xs font-bold tracking-widest text-primary-red uppercase">
+            <span className="font-headline text-[10px] font-black tracking-widest text-white bg-primary-red px-3 py-1 rounded-full uppercase inline-block mb-3 shadow-sm shadow-primary-red/20">
               BẢO CHỨNG SỰ HÀI LÒNG KHÁCH HÀNG
             </span>
-            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-white uppercase mt-1 leading-tight text-glow">
+            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-[#245B4A] uppercase mt-1 leading-tight">
               Vì sao chọn <span className="text-primary-red">Linh Trang Home</span>
             </h2>
             <div className="w-16 h-1 bg-primary-red mx-auto mt-3 rounded-full"></div>
@@ -70,15 +70,15 @@ export default function Footer() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05, duration: 0.5 }}
-                  className="p-6 bg-[#327863]/25 rounded-2xl border border-white/5 hover:border-primary-red/30 transition-all duration-300 text-center group shadow-md"
+                  className="p-6 bg-slate-50 rounded-2xl border border-slate-100/80 hover:border-primary-red/30 hover:bg-white hover:shadow-xl transition-all duration-300 text-center group shadow-md"
                 >
-                  <div className="w-12 h-12 rounded-full bg-primary-red/10 border border-primary-red/25 flex items-center justify-center text-primary-red mx-auto mb-5 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-full bg-primary-red flex items-center justify-center text-white mx-auto mb-5 group-hover:scale-110 transition-transform shadow-md shadow-primary-red/20">
                     <IconComponent className="w-5 h-5" />
                   </div>
-                  <h4 className="font-headline text-sm font-bold text-white mb-2 uppercase group-hover:text-primary-red transition-all">
+                  <h4 className="font-headline text-sm font-bold text-[#245B4A] mb-2 uppercase group-hover:text-primary-red transition-all">
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-text-secondary leading-relaxed">
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -149,11 +149,11 @@ export default function Footer() {
                 VỀ CHÚNG TÔI
               </h5>
               <ul className="space-y-3 font-semibold text-text-secondary">
-                <li><a href="#about" className="hover:text-primary-red transition-colors">Giới thiệu công ty</a></li>
-                <li><a href="#about" className="hover:text-primary-red transition-colors">Tầm nhìn - Sứ mệnh</a></li>
-                <li><a href="#about" className="hover:text-primary-red transition-colors">Đội ngũ kỹ sư</a></li>
-                <li><a href="#about" className="hover:text-primary-red transition-colors">Hệ thống showroom</a></li>
-                <li><a href="#about" className="hover:text-primary-red transition-colors">Tuyển dụng nhân sự</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Giới thiệu công ty</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Tầm nhìn - Sứ mệnh</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Đội ngũ kỹ sư</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Hệ thống showroom</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Tuyển dụng nhân sự</a></li>
               </ul>
             </div>
 
@@ -163,11 +163,11 @@ export default function Footer() {
                 CHÍNH SÁCH
               </h5>
               <ul className="space-y-3 font-semibold text-text-secondary">
-                <li><a href="#policy-1" className="hover:text-primary-red transition-colors">Chính sách bảo hành vàng</a></li>
-                <li><a href="#policy-2" className="hover:text-primary-red transition-colors">Chính sách đổi trả minh bạch</a></li>
-                <li><a href="#policy-3" className="hover:text-primary-red transition-colors">Chính sách giao nhận vận chuyển</a></li>
-                <li><a href="#policy-4" className="hover:text-primary-red transition-colors">Chính sách thanh toán linh hoạt</a></li>
-                <li><a href="#policy-5" className="hover:text-primary-red transition-colors">Chính sách bảo mật dữ liệu</a></li>
+                <li><a href="#policy-1" className="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li>
+                <li><a href="#policy-2" className="hover:text-white transition-colors">Chính sách đổi trả minh bạch</a></li>
+                <li><a href="#policy-3" className="hover:text-white transition-colors">Chính sách giao nhận vận chuyển</a></li>
+                <li><a href="#policy-4" className="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li>
+                <li><a href="#policy-5" className="hover:text-white transition-colors">Chính sách bảo mật dữ liệu</a></li>
               </ul>
             </div>
 
@@ -180,21 +180,21 @@ export default function Footer() {
                   </h5>
                   <ul className="space-y-3 text-text-secondary">
                     <li className="flex items-start gap-2.5 leading-relaxed">
-                      <MapPin className="w-5 h-5 text-primary-red flex-shrink-0 mt-0.5" />
+                      <MapPin className="w-5 h-5 text-white/70 flex-shrink-0 mt-0.5" />
                       <span>81 Hùng Vương, Phường Lâm Viên, TP. Đà Lạt, Lâm Đồng</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <Phone className="w-4 h-4 text-primary-red flex-shrink-0" />
+                      <Phone className="w-4 h-4 text-white/70 flex-shrink-0" />
                       <a href="tel:0977247623" className="hover:text-white transition-colors font-bold text-white">
                         0977 247 623
                       </a>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <Mail className="w-4 h-4 text-primary-red flex-shrink-0" />
+                      <Mail className="w-4 h-4 text-white/70 flex-shrink-0" />
                       <span>info@linhtranghome.vn</span>
                     </li>
                     <li className="flex items-start gap-2.5 leading-relaxed">
-                      <Clock className="w-4 h-4 text-primary-red flex-shrink-0 mt-0.5" />
+                      <Clock className="w-4 h-4 text-white/70 flex-shrink-0 mt-0.5" />
                       <span>08:00 - 21:00 (Hỗ trợ Hotline & Khảo sát công trình tất cả các ngày trong tuần)</span>
                     </li>
                   </ul>

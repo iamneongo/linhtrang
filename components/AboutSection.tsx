@@ -83,11 +83,12 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
             className="flex flex-col"
           >
-            <span className="font-headline text-xs font-bold tracking-widest text-primary-red uppercase mb-1">
+            <span className="font-headline text-[10px] font-bold tracking-widest text-white bg-primary-red px-3 py-1 rounded-full uppercase mb-3 inline-block w-fit shadow-sm shadow-primary-red/20">
               UY TÍN ĐƯỢC KHẲNG ĐỊNH
             </span>
-            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-white mb-6 uppercase tracking-tight">
-              VỀ <span className="text-primary-red">LINH TRANG</span> HOME
+            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-white mb-6 uppercase tracking-tight relative pb-3 flex items-center">
+              VỀ LINH TRANG HOME
+              <span className="absolute bottom-0 left-0 w-16 h-1 bg-primary-red rounded-full"></span>
             </h2>
             
             <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
@@ -97,7 +98,7 @@ export default function AboutSection() {
             {/* Bullets lists */}
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-primary-red/30 bg-primary-red/5 flex items-center justify-center flex-shrink-0 text-primary-red">
+                <div className="w-10 h-10 rounded-full bg-primary-red flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-primary-red/10">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
@@ -111,7 +112,7 @@ export default function AboutSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-primary-red/30 bg-primary-red/5 flex items-center justify-center flex-shrink-0 text-primary-red">
+                <div className="w-10 h-10 rounded-full bg-primary-red flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-primary-red/10">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
@@ -125,7 +126,7 @@ export default function AboutSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-primary-red/30 bg-primary-red/5 flex items-center justify-center flex-shrink-0 text-primary-red">
+                <div className="w-10 h-10 rounded-full bg-primary-red flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-primary-red/10">
                   <HeartHandshake className="w-5 h-5" />
                 </div>
                 <div>
@@ -142,7 +143,7 @@ export default function AboutSection() {
         </div>
 
         {/* Counter Statistics Section Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16 border-t border-white/5 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16 border-t border-white/10 relative">
           {stats.map((item, idx) => {
             const IconComponent = item.icon;
             return (
@@ -152,18 +153,18 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="bg-[#245B4A]/25 border border-white/5 shadow-inner p-6 rounded-xl flex flex-col items-center text-center group hover:border-[#E50914]/20 transition-all duration-300"
+                className="bg-white border border-slate-100 shadow-lg p-6 rounded-xl flex flex-col items-center text-center group hover:-translate-y-1 hover:shadow-xl hover:border-primary-red/20 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary-red mb-4 group-hover:bg-primary-red group-hover:text-white transition-all">
+                <div className="w-10 h-10 rounded-full bg-primary-red flex items-center justify-center text-white mb-4 group-hover:bg-[#c0000c] transition-all shadow-md shadow-primary-red/20">
                   <IconComponent className="w-5 h-5" />
                 </div>
                 <div className="font-headline text-4xl font-black text-primary-red tracking-tight mb-2">
                   {item.value}
                 </div>
-                <h5 className="font-headline text-xs font-bold text-white uppercase tracking-widest mb-1.5">
+                <h5 className="font-headline text-xs font-bold text-[#245B4A] uppercase tracking-widest mb-1.5">
                   {item.label}
                 </h5>
-                <p className="text-xs text-text-secondary leading-normal">{item.description}</p>
+                <p className="text-xs text-slate-600 leading-normal">{item.description}</p>
               </motion.div>
             );
           })}

@@ -259,7 +259,7 @@ export default function ChatBot() {
             {/* Header section matching corporate green visual block */}
             <div className="bg-gradient-to-r from-[#245B4A] to-[#122D24] p-4 flex items-center justify-between border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#E50914]/25 border border-primary-red/30 flex items-center justify-center text-white relative">
+                <div className="w-10 h-10 rounded-full bg-primary-red flex items-center justify-center text-white relative shadow-md shadow-primary-red/20">
                   <Bot className="w-5 h-5 text-white animate-pulse" />
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-[#245B4A] block"></span>
                 </div>

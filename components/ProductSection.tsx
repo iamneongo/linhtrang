@@ -47,7 +47,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
   };
 
   return (
-    <section id="products" className="py-20 bg-[#245B4A] border-b border-white/5 relative overflow-hidden">
+    <section id="products" className="py-20 bg-white border-b border-slate-100 relative overflow-hidden">
       {/* Visual glowing accent background */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary-red/5 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -56,17 +56,17 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
         {/* Title & Link to show all */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
           <div>
-            <span className="font-headline text-xs font-bold tracking-widest text-text-secondary uppercase">
+            <span className="font-headline text-xs font-bold tracking-widest text-slate-500 uppercase">
               KIẾN TẠO PHÂN KHÚC THƯỢNG LƯU
             </span>
-            <h2 className="font-headline text-3xl md:text-4xl font-extrabold uppercase mt-1 leading-tight tracking-tight">
+            <h2 className="font-headline text-3xl md:text-4xl font-extrabold uppercase mt-1 leading-tight tracking-tight text-[#245B4A]">
               Danh mục <span className="text-primary-red">sản phẩm</span>
             </h2>
             <div className="w-16 h-1 bg-primary-red mt-3 rounded-full"></div>
           </div>
           <button 
             onClick={() => handleSelectCategory(categories[0])}
-            className="text-xs font-headline font-bold tracking-wider hover:text-primary-red transition-all flex items-center gap-2 group cursor-pointer"
+            className="text-xs font-headline font-bold tracking-wider text-slate-800 hover:text-primary-red transition-all flex items-center gap-2 group cursor-pointer"
           >
             XEM TẤT CẢ DANH MỤC <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-primary-red" />
           </button>
@@ -82,7 +82,7 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05, duration: 0.5 }}
               onClick={() => handleSelectCategory(cat)}
-              className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#327863] border border-white/5 cursor-pointer shadow-lg hover:border-primary-red/40 transition-all duration-500"
+              className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#327863] border border-slate-100 cursor-pointer shadow-lg hover:border-primary-red/40 transition-all duration-500"
             >
               {/* Product background image */}
               <img

@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight, PhoneCall, CalendarPlus } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Header from '@/components/Header';
 import ProductSection from '@/components/ProductSection';
@@ -14,6 +17,10 @@ import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 
 import { HERO_URL } from '@/data';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const heroSlides = [
   {
@@ -46,6 +53,9 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const [quoteProduct, setQuoteProduct] = useState({ name: '', code: '' });
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const trustBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -80,6 +90,56 @@ export default function HomePage() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
+  // GSAP animations for Hero Carousel
+  useGSAP(() => {
+    if (!heroRef.current) return;
+
+    const tl = gsap.timeline();
+
+    // Reset initial states to avoid jump
+    gsap.set([".hero-sub", ".hero-title", ".hero-desc", ".hero-btn-container"], { opacity: 0, y: 30 });
+    gsap.set(".hero-bg-img", { opacity: 0, scale: 1.15 });
+
+    // Animate background image zoom and fade
+    tl.to(".hero-bg-img", { 
+      scale: 1, 
+      opacity: 1, 
+      duration: 1.6, 
+      ease: "power3.out" 
+    });
+
+    // Stagger animate other elements
+    tl.to([".hero-sub", ".hero-title", ".hero-desc", ".hero-btn-container"], { 
+      y: 0, 
+      opacity: 1, 
+      duration: 0.9, 
+      stagger: 0.12, 
+      ease: "power4.out" 
+    }, "-=1.2");
+
+  }, { dependencies: [currentSlide], scope: heroRef, revertOnUpdate: true });
+
+  // GSAP scroll trigger for Trust Bar elements
+  useGSAP(() => {
+    if (!trustBarRef.current) return;
+
+    gsap.fromTo(".trust-bar-item",
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: trustBarRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
+  }, { scope: trustBarRef });
+
   return (
     <div className="min-h-screen bg-[#245B4A] text-[#ffdad5] select-none font-sans overflow-x-hidden antialiased flex flex-col">
       <Header
@@ -90,42 +150,25 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section id="home" className="relative min-h-[100dvh] w-full flex items-center overflow-hidden">
+      <section id="home" ref={heroRef} className="relative min-h-[100dvh] w-full flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0"
-            >
-              <img
-                src={heroSlides[currentSlide].image}
-                alt="Luxury Home Show"
-                className="w-full h-full object-cover brightness-[0.7]"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#245B4A] via-[#245B4A]/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#245B4A] via-transparent to-black/30" />
-            </motion.div>
-          </AnimatePresence>
+          <img
+            src={heroSlides[currentSlide].image}
+            alt="Luxury Home Show"
+            className="hero-bg-img w-full h-full object-cover brightness-[0.7] opacity-0"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#245B4A] via-[#245B4A]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#245B4A] via-transparent to-black/30" />
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 flex items-center h-full">
           <div className="max-w-3xl pt-20 md:pt-24">
-            <motion.span
-              key={`sub-${currentSlide}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="font-headline text-[10px] sm:text-xs font-black tracking-widest text-text-secondary uppercase bg-white/5 border border-white/10 px-3 py-1.5 rounded-full w-fit mb-6 block"
-            >
+            <span className="hero-sub font-headline text-[10px] sm:text-xs font-black tracking-widest text-text-secondary uppercase bg-white/5 border border-white/10 px-3 py-1.5 rounded-full w-fit mb-6 block opacity-0">
               {heroSlides[currentSlide].sub}
-            </motion.span>
+            </span>
 
-            <h1 className="font-headline text-3xl sm:text-5xl md:text-6xl font-black mb-6 leading-none tracking-tight text-white">
+            <h1 className="hero-title font-headline text-3xl sm:text-5xl md:text-6xl font-black mb-6 leading-none tracking-tight text-white opacity-0">
               {heroSlides[currentSlide].title1} <br />
               <span className="text-primary-red text-glow">
                 {heroSlides[currentSlide].title2}
@@ -134,11 +177,11 @@ export default function HomePage() {
               {heroSlides[currentSlide].title3}
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-text-secondary mb-8 md:mb-10 max-w-xl leading-relaxed font-medium">
+            <p className="hero-desc text-sm sm:text-base md:text-lg text-text-secondary mb-8 md:mb-10 max-w-xl leading-relaxed font-medium opacity-0">
               {heroSlides[currentSlide].desc}
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="hero-btn-container flex flex-wrap gap-4 opacity-0">
               <button
                 onClick={() => handleNavigateToSection('products')}
                 className="px-6 md:px-8 py-4 bg-primary-red text-white text-xs md:text-sm font-headline font-bold uppercase tracking-wider rounded-xl flex items-center gap-2.5 shadow-lg shadow-primary-red/20 hover:bg-[#c0000c] transition-all duration-300 group cursor-pointer"
@@ -207,7 +250,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <section className="bg-[#327863]/20 border-b border-white/5 py-8 md:py-10 relative">
+      <section id="trust-bar" ref={trustBarRef} className="bg-[#327863]/20 border-b border-white/5 py-8 md:py-10 relative">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {[
             { icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', title: 'Sản phẩm chính hãng', desc: 'Cam kết chất lượng 100%' },
@@ -215,8 +258,8 @@ export default function HomePage() {
             { icon: 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z', title: 'Tư vấn tận tâm', desc: 'Đội ngũ chuyên môn 24/7' },
             { icon: 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4', title: 'Hỗ trợ vận chuyển', desc: 'Đúng tiến độ cam kết' },
           ].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 group">
-              <div className="w-10 h-10 rounded-xl bg-primary-red/10 border border-primary-red/20 flex items-center justify-center text-primary-red group-hover:bg-primary-red group-hover:text-white transition-all duration-300">
+            <div key={idx} className="trust-bar-item flex items-center gap-4 group opacity-0">
+              <div className="w-10 h-10 rounded-xl bg-primary-red flex items-center justify-center text-white group-hover:bg-[#c0000c] transition-all duration-300 shadow-md shadow-primary-red/10">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                 </svg>
