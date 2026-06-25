@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageCircle, X, Send, Sparkles, RotateCcw, Bot, User, Check, Copy } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, RotateCcw, Bot, User, Check, Copy, PhoneCall, CalendarPlus, ArrowUp } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -17,6 +17,31 @@ export default function ChatBot() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatBodyRef = useRef<HTMLDivElement>(null);
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateToConsultation = () => {
+    const element = document.getElementById('consultation');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Initialize with greeting if there are no messages
   useEffect(() => {
@@ -206,30 +231,8 @@ export default function ChatBot() {
   };
 
   return (
-    <div id="ai-chatbot-system" className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div id="ai-chatbot-system" className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       
-      {/* Floating Action Launcher Button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full bg-[#E50914] text-white flex items-center justify-center shadow-2xl relative cursor-pointer border border-white/20 z-50 group overflow-hidden"
-        title="Trò chuyện với trợ lý thiết kế MIA"
-      >
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#9B0000] to-[#E50914] opacity-80 group-hover:opacity-100 transition-opacity"></div>
-        
-        {/* Decorative pulsating waves behind */}
-        <span className="absolute inset-0 rounded-full bg-[#E50914]/40 scale-110 animate-ping opacity-70 pointer-events-none"></span>
-
-        <span className="relative z-10 flex items-center justify-center">
-          {isOpen ? (
-            <X className="w-6 h-6 animate-spin-once" />
-          ) : (
-            <MessageCircle className="w-6 h-6 animate-pulse" />
-          )}
-        </span>
-      </motion.button>
-
       {/* Floating Notification Speech Bubble Badge */}
       <AnimatePresence>
         {!isOpen && messages.length <= 1 && (
@@ -238,7 +241,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ delay: 3, duration: 0.4 }}
-            className="absolute bottom-16 right-0 bg-gradient-to-r from-[#245B4A] to-[#327863] border border-white/10 text-white py-2 px-4 rounded-2xl rounded-br-none shadow-2xl mr-2 text-xs font-semibold flex items-center gap-2 whitespace-nowrap"
+            className="absolute bottom-2 right-16 bg-gradient-to-r from-[#245B4A] to-[#327863] border border-white/10 text-white py-2 px-4 rounded-2xl rounded-br-none shadow-2xl mr-2 text-xs font-semibold flex items-center gap-2 whitespace-nowrap pointer-events-auto"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#E50914] animate-bounce" />
             <span>MIA đang sẵn sàng tư vấn cho bạn!</span>
@@ -254,7 +257,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ duration: 0.28, ease: 'easeOut' }}
-            className="w-[350px] sm:w-[410px] h-[550px] max-h-[85vh] bg-[#245B4A]/95 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 z-40"
+            className="w-[350px] sm:w-[410px] h-[550px] max-h-[85vh] bg-[#245B4A]/95 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl flex flex-col overflow-hidden z-40 absolute bottom-20 right-0 sm:right-16 pointer-events-auto"
           >
             {/* Header section matching corporate green visual block */}
             <div className="bg-gradient-to-r from-[#245B4A] to-[#122D24] p-4 flex items-center justify-between border-b border-white/10">
@@ -413,6 +416,70 @@ export default function ChatBot() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Unified Floating Actions Stack */}
+      <div className="flex flex-col gap-3 items-center pointer-events-auto z-50">
+        
+        {/* Scroll to Top Button */}
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.5, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.5, y: 10 }}
+              onClick={handleScrollToTop}
+              title="Cuộn lên đầu trang"
+              className="w-12 h-12 rounded-full bg-primary-red hover:bg-[#c0000c] text-white flex items-center justify-center shadow-lg active:scale-95 transition-all cursor-pointer border border-white/10"
+            >
+              <ArrowUp className="w-5 h-5" />
+            </motion.button>
+          )}
+        </AnimatePresence>
+
+        {/* Design Consultation Button */}
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleNavigateToConsultation}
+          title="Nhận tư vấn thiết kế miễn phí"
+          className="w-12 h-12 rounded-full bg-[#245B4A] hover:bg-primary-red text-white flex items-center justify-center shadow-lg border border-white/10 cursor-pointer transition-all"
+        >
+          <CalendarPlus className="w-5 h-5" />
+        </motion.button>
+
+        {/* Hotline Call Button */}
+        <motion.a
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          href="tel:0977247623"
+          title="Gọi Hotline tư vấn"
+          className="w-12 h-12 rounded-full bg-[#245B4A] hover:bg-primary-red text-white flex items-center justify-center shadow-lg border border-white/10 cursor-pointer transition-all"
+        >
+          <PhoneCall className="w-5 h-5" />
+        </motion.a>
+
+        {/* Chat Launcher Button */}
+        <motion.button
+          onClick={() => setIsOpen(!isOpen)}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-14 h-14 rounded-full bg-[#E50914] text-white flex items-center justify-center shadow-2xl relative cursor-pointer border border-white/20 z-50 group overflow-hidden"
+          title="Trò chuyện với trợ lý thiết kế MIA"
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#9B0000] to-[#E50914] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          
+          {/* Decorative pulsating waves behind */}
+          <span className="absolute inset-0 rounded-full bg-[#E50914]/40 scale-110 animate-ping opacity-70 pointer-events-none"></span>
+
+          <span className="relative z-10 flex items-center justify-center">
+            {isOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <MessageCircle className="w-6 h-6 animate-pulse" />
+            )}
+          </span>
+        </motion.button>
+      </div>
 
     </div>
   );

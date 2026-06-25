@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, CheckCircle2, BadgePercent, Truck, ShieldCheck, MapPin, Phone, Mail, Clock, ArrowUp, Send, Facebook, Youtube, Share2 } from 'lucide-react';
+import { Sparkles, CheckCircle2, BadgePercent, Truck, ShieldCheck, MapPin, Phone, Mail, Clock, Send, Facebook, Youtube, Share2 } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
 export default function Footer() {
@@ -91,16 +91,6 @@ export default function Footer() {
       {/* Corporate Luxury Footer Section */}
       <footer className="bg-[#1c473a] pt-20 pb-8 border-t border-white/10 relative overflow-hidden">
         
-        {/* Floating Arrow To Top bubble */}
-        <div className="absolute right-8 top-8 z-20">
-          <button
-            onClick={handleScrollToTop}
-            title="Cuộn lên đầu trang"
-            className="w-11 h-11 rounded-full bg-primary-red hover:bg-[#c0000c] flex items-center justify-center text-white p-2.5 shadow-lg shadow-primary-red/20 active:scale-95 transition-all cursor-pointer"
-          >
-            <ArrowUp className="w-5 h-5 animate-pulse" />
-          </button>
-        </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           {/* Main columns */}

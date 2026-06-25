@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, ChevronLeft, ChevronRight, PhoneCall, CalendarPlus } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -199,22 +199,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute right-4 md:right-8 bottom-8 md:bottom-12 z-20 flex flex-col gap-3">
-          <a
-            href="tel:0977247623"
-            title="Liên hệ Hotline ngay"
-            className="w-12 h-12 rounded-full bg-[#327863]/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary-red hover:text-white hover:border-primary-red hover:scale-105 active:scale-95 transition-all shadow-xl"
-          >
-            <PhoneCall className="w-5 h-5" />
-          </a>
-          <button
-            onClick={() => handleNavigateToSection('consultation')}
-            title="Nhận giải pháp nhà 3D miễn phí"
-            className="w-12 h-12 rounded-full bg-[#327863]/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary-red hover:text-white hover:border-primary-red hover:scale-105 active:scale-95 transition-all shadow-xl cursor-pointer"
-          >
-            <CalendarPlus className="w-5 h-5" />
-          </button>
-        </div>
 
         <div className="absolute bottom-8 left-0 right-0 z-20">
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-end">
