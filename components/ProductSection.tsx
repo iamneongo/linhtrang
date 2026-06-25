@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, ShoppingBag, X, Check, HelpCircle } from 'lucide-react';
+import { ArrowRight, ShoppingBag, X, Check, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Category, Product } from '../types';
 import { categories, productsByCategoryId } from '../data';
@@ -25,6 +25,18 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
   const [selectedBrand, setSelectedBrand] = useState<string>('Tất cả');
   const [selectedMaterial, setSelectedMaterial] = useState<string>('Tất cả');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const { scrollLeft, clientWidth } = carouselRef.current;
+      const scrollAmount = clientWidth * 0.85; // Scroll 85% of viewport width
+      carouselRef.current.scrollTo({
+        left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const handleSelectCategory = (cat: Category | null) => {
     setSelectedCategory(cat);
@@ -72,43 +84,67 @@ export default function ProductSection({ onProductSelectForQuote }: ProductSecti
           </button>
         </div>
 
-        {/* Categories Grid (6 Card Layout) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
-          {categories.map((cat, idx) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05, duration: 0.5 }}
-              onClick={() => handleSelectCategory(cat)}
-              className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#327863] border border-slate-100 cursor-pointer shadow-lg hover:border-primary-red/40 transition-all duration-500"
+        {/* Categories Carousel (Frosted larger slide cards) */}
+        <div className="relative mt-8">
+          {/* Carousel Navigation Buttons */}
+          <div className="absolute -top-16 right-0 flex gap-2.5 z-10">
+            <button
+              onClick={() => scrollCarousel('left')}
+              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-[#245B4A] shadow-sm active:scale-95 transition-all cursor-pointer"
+              title="Slide trước"
             >
-              {/* Product background image */}
-              <img
-                src={cat.imageUrl}
-                alt={cat.name}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              
-              {/* Overlay with linear dark gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#245B4A] via-[#245B4A]/50 to-transparent flex flex-col justify-end p-5">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mb-3 group-hover:bg-primary-red group-hover:text-white transition-colors duration-300 text-white">
-                    <DynamicIcon name={cat.iconName} className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scrollCarousel('right')}
+              className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-[#245B4A] shadow-sm active:scale-95 transition-all cursor-pointer"
+              title="Slide sau"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Scrolling horizontal list */}
+          <div
+            ref={carouselRef}
+            className="flex overflow-x-auto gap-6 pb-6 scroll-smooth snap-x snap-mandatory scrollbar-none"
+          >
+            {categories.map((cat, idx) => (
+              <motion.div
+                key={cat.id}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05, duration: 0.5 }}
+                onClick={() => handleSelectCategory(cat)}
+                className="group relative w-[280px] sm:w-[320px] md:w-[350px] shrink-0 aspect-[4/5] snap-start rounded-2xl overflow-hidden bg-black border border-slate-100 cursor-pointer shadow-lg hover:shadow-2xl hover:border-primary-red/30 transition-all duration-500"
+              >
+                {/* Product background image */}
+                <img
+                  src={cat.imageUrl}
+                  alt={cat.name}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                
+                {/* Overlay with neutral dark gradient and frosted details */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 shadow-lg group-hover:bg-primary-red group-hover:text-white group-hover:border-primary-red group-hover:scale-110 transition-all duration-300 text-white">
+                      <DynamicIcon name={cat.iconName} className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-headline text-base font-bold text-white uppercase group-hover:text-primary-red transition-colors duration-300 tracking-wide">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[10px] text-white/70 uppercase tracking-widest font-semibold mt-1.5 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">
+                      {cat.badge}
+                    </p>
                   </div>
-                  <h3 className="font-headline text-sm font-bold text-white uppercase group-hover:text-primary-red transition-colors duration-300">
-                    {cat.name}
-                  </h3>
-                  <p className="text-[10px] text-text-secondary uppercase tracking-wider font-semibold mt-1">
-                    {cat.badge}
-                  </p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
