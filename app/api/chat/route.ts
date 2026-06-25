@@ -3,12 +3,6 @@ import { GoogleGenAI } from '@google/genai';
 
 const apiKey = process.env.GEMINI_API_KEY || '';
 
-const ai = new GoogleGenAI({
-  apiKey,
-  httpOptions: {
-    headers: { 'User-Agent': 'aistudio-build' },
-  },
-});
 
 const systemInstruction = `Bạn là MIA, một Trợ Lý Ảo Thiết Kế Nội Thất & Vật Liệu Cao Cấp cực kỳ thông minh, duy mỹ, và tận tâm của "Linh Trang Home" (Showroom tại 81 Hùng Vương, Phường Lâm Viên, TP. Đà Lạt, Lâm Đồng hoặc tại Thanh Hóa & Hà Nội. Hotline: 0977.247.623). Châm ngôn: "Nâng Tầm Không Gian Sống Của Bạn".
 
@@ -68,6 +62,13 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Lazy-initialize to avoid build-time errors when apiKey is missing
+    const ai = new GoogleGenAI({
+      apiKey,
+      httpOptions: { headers: { 'User-Agent': 'aistudio-build' } },
+    });
+
 
     const formattedContents: { role: string; parts: { text: string }[] }[] = [];
 
