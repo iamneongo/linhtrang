@@ -239,7 +239,7 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
       // Unordered list bullet
       if (line.trim().startsWith('- ')) {
         return (
-          <li key={pairIdx} className="list-none pl-4 relative my-1 text-xs leading-relaxed text-white/90">
+          <li key={pairIdx} className="list-none pl-4 relative my-1 text-xs leading-relaxed text-slate-700 font-medium">
             <span className="absolute left-0 top-1.5 w-1.5 h-1.5 bg-[#E50914] rounded-full"></span>
             {line.trim().substring(2)}
           </li>
@@ -252,7 +252,7 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
       }
 
       return (
-        <p key={pairIdx} className="text-xs sm:text-[13px] leading-relaxed text-white/95 my-1.5">
+        <p key={pairIdx} className="text-xs sm:text-[13px] leading-relaxed text-slate-800 font-medium my-1.5">
           {formattedLine}
         </p>
       );
@@ -345,8 +345,8 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
                       <div
                         className={`rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm border relative shadow-md group ${
                           isBot
-                            ? 'bg-[#327863]/30 border-white/5 text-white rounded-tl-none'
-                            : 'bg-[#E50914]/15 border-[#E50914]/30 text-white rounded-tr-none'
+                            ? 'bg-white border-white text-slate-800 rounded-tl-none shadow-sm'
+                            : 'bg-[#E50914]/20 border-[#E50914]/30 text-white rounded-tr-none'
                         }`}
                       >
                         {/* Copy button for model responses */}
@@ -399,12 +399,12 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
                     <Bot className="w-3.5 h-3.5 text-[#E50914]" />
                   </div>
                   <div className="flex flex-col">
-                    <div className="rounded-2xl rounded-tl-none px-4 py-3 bg-[#327863]/30 border border-white/5 text-text-secondary shadow-inner">
+                    <div className="rounded-2xl rounded-tl-none px-4 py-3 bg-white border border-white text-slate-500 shadow-sm">
                       <div className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                        <span className="text-[11px] text-white/50 ml-1">MIA AI đang phân tích...</span>
+                        <span className="text-[11px] text-slate-400 ml-1 font-medium">MIA AI đang phân tích...</span>
                       </div>
                     </div>
                   </div>
