@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageCircle, X, Send, Sparkles, RotateCcw, Bot, User, Check, Copy, PhoneCall, CalendarPlus, ArrowUp } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, RotateCcw, Bot, User, Check, Copy, PhoneCall, CalendarPlus, ArrowUp, Camera } from 'lucide-react';
 
 interface Message {
   id: string;
   role: 'user' | 'model';
   content: string;
   timestamp: Date;
+  image?: string;
 }
 
 export default function ChatBot() {
@@ -19,6 +20,8 @@ export default function ChatBot() {
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +91,7 @@ export default function ChatBot() {
 
   const handleSendMessage = async (textToSend?: string) => {
     const content = (textToSend || inputValue).trim();
-    if (!content) return;
+    if (!content && !selectedImage) return;
 
     if (!textToSend) {
       setInputValue('');
@@ -97,12 +100,38 @@ export default function ChatBot() {
     const userMsg: Message = {
       id: `msg-${Date.now()}-user`,
       role: 'user',
-      content,
-      timestamp: new Date()
+      content: content || 'Đã gửi một hình ảnh không gian để AI phối cảnh.',
+      timestamp: new Date(),
+      image: selectedImage || undefined
     };
+
+    const currentImg = selectedImage;
+    setSelectedImage(null);
 
     setMessages((prev) => [...prev, userMsg]);
     setIsLoading(true);
+
+    if (currentImg) {
+      // Simulate AI visual analysis
+      setTimeout(() => {
+        const botMsg: Message = {
+          id: `msg-${Date.now()}-model`,
+          role: 'model',
+          content: `Dạ, MIA đã nhận được hình ảnh không gian của Quý khách! 📸
+
+Qua hình ảnh sơ bộ, MIA nhận thấy đây là một không gian có kết cấu đẹp. Để nâng tầm đẳng cấp phối cảnh 3D:
+- 💎 **Về gạch ốp lát:** Đề xuất sử dụng **Gạch Vân Đá Marble Calacatta Tây Ban Nha (LT-MARBLE-01)** khổ lớn để lát nền giúp phòng rộng rãi và sang trọng vượt bậc.
+- 🪵 **Về mảng tường nhấn:** Nên kết hợp **Tấm Ốp Lam Sóng Charcoal Gỗ Óc Chó Ý (LT-CHARCOAL-01)** ở vách ti vi hoặc đầu giường để tạo chiều sâu ấm áp và tiêu âm cực tốt.
+- 🛁 **Nếu đây là phòng tắm:** **Bồn Cầu Thông Minh Linh Trang Luxury One (LT-TOILET-01)** kết hợp với **Bồn Tắm Nằm Đá Nhân Tạo Solid Surface (LT-TUB-03)** sẽ là sự lựa chọn hoàn hảo của giới thượng lưu.
+
+Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên hệ đo đạc thực tế và vẽ bản phối cảnh 3D chuyên sâu hoàn toàn miễn phí không ạ?`,
+          timestamp: new Date()
+        };
+        setMessages((prev) => [...prev, botMsg]);
+        setIsLoading(false);
+      }, 2000);
+      return;
+    }
 
     try {
       // Build simplified history structure for API consumption
@@ -278,14 +307,14 @@ export default function ChatBot() {
               <div className="flex items-center gap-1">
                 <button
                   onClick={resetChat}
-                  className="p-2 text-white/50 hover:text-white transition-all rounded-lg hover:bg-white/5"
+                  className="p-2 text-white/50 hover:text-white transition-all rounded-lg hover:bg-white/5 cursor-pointer"
                   title="Đặt lại đoạn hội thoại"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 text-white/50 hover:text-white transition-all rounded-lg hover:bg-white/5"
+                  className="p-2 text-white/50 hover:text-white transition-all rounded-lg hover:bg-white/5 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -334,6 +363,14 @@ export default function ChatBot() {
                             )}
                           </button>
                         )}
+                        
+                        {/* Embedded image preview if exists */}
+                        {msg.image && (
+                          <div className="mb-2 max-w-full rounded-lg overflow-hidden border border-white/10 max-h-48 bg-black/20">
+                            <img src={msg.image} alt="Không gian đã gửi" className="w-full h-full object-cover" />
+                          </div>
+                        )}
+
                         <div className="whitespace-pre-line">
                           {isBot ? renderMessageContent(msg.content) : <p className="text-xs sm:text-[13px] leading-relaxed text-white">{msg.content}</p>}
                         </div>
@@ -367,7 +404,7 @@ export default function ChatBot() {
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                         <span className="w-1.5 h-1.5 bg-[#E50914] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                        <span className="text-[11px] text-white/50 ml-1">MIA đang soạn câu trả lời...</span>
+                        <span className="text-[11px] text-white/50 ml-1">MIA AI đang phân tích...</span>
                       </div>
                     </div>
                   </div>
@@ -392,14 +429,59 @@ export default function ChatBot() {
               </div>
             )}
 
+            {/* Image Preview Panel */}
+            {selectedImage && (
+              <div className="px-4 py-2 bg-black/20 border-t border-white/5 flex items-center gap-2 relative">
+                <div className="w-12 h-9 rounded overflow-hidden border border-white/15 relative">
+                  <img src={selectedImage} alt="Preview" className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[9px] text-white/40 uppercase">Ảnh đã chọn</p>
+                  <p className="text-[10px] text-white/80 font-medium truncate max-w-[180px]">Đang chờ gửi phối cảnh...</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage(null)}
+                  className="w-5 h-5 rounded-full bg-black/60 hover:bg-black text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+            )}
+
             {/* Input area Form block */}
             <form
               onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
               className="p-3 bg-gradient-to-b from-transparent to-[#122D24] border-t border-white/10 flex gap-2 items-center"
             >
               <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => setSelectedImage(reader.result as string);
+                    reader.readAsDataURL(file);
+                  }
+                }}
+                className="hidden"
+              />
+              
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isLoading}
+                title="Tải ảnh không gian lên"
+                className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 disabled:opacity-50"
+              >
+                <Camera className="w-4.5 h-4.5" />
+              </button>
+
+              <input
                 type="text"
-                placeholder="Nhập câu hỏi của bạn tại đây..."
+                placeholder={selectedImage ? "Nhập yêu cầu phối cảnh..." : "Nhập câu hỏi tại đây..."}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isLoading}
@@ -407,7 +489,7 @@ export default function ChatBot() {
               />
               <button
                 type="submit"
-                disabled={isLoading || !inputValue.trim()}
+                disabled={isLoading || (!inputValue.trim() && !selectedImage)}
                 className="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-[#9B0000] to-[#E50914] hover:brightness-110 active:scale-95 text-white flex items-center justify-center shadow-lg transition-transform disabled:opacity-40 disabled:scale-100 cursor-pointer"
               >
                 <Send className="w-4 h-4 ml-0.5" />

@@ -197,11 +197,11 @@ export default function HomePage() {
           <img
             src={heroSlides[currentSlide].image}
             alt="Luxury Home Show"
-            className="hero-bg-img w-full h-full object-cover brightness-[0.75] opacity-0"
+            className="hero-bg-img w-full h-full object-cover brightness-[0.88] opacity-0"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e16]/80 via-[#0a1e16]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1e16]/65 via-transparent to-[#0a1e16]/15" />
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 flex items-center h-full">
