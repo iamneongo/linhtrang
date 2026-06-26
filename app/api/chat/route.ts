@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenAI } from '@google/genai';
 
-const apiKey = process.env.GEMINI_API_KEY || '';
-
+const apiKey = process.env.NVIDIA_API_KEY || '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';
+const modelName = 'meta/llama-3.3-70b-instruct';
 
 const systemInstruction = `Bạn là MIA, một Trợ Lý Ảo Thiết Kế Nội Thất & Vật Liệu Cao Cấp cực kỳ thông minh, duy mỹ, và tận tâm của "Linh Trang Home" (Showroom tại 81 Hùng Vương, Phường Lâm Viên, TP. Đà Lạt, Lâm Đồng hoặc tại Thanh Hóa & Hà Nội. Hotline: 0977.247.623). Châm ngôn: "Nâng Tầm Không Gian Sống Của Bạn".
 
@@ -58,47 +57,48 @@ export async function POST(request: NextRequest) {
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'GEMINI_API_KEY chưa được cấu hình. Sử dụng cài đặt Secrets để thiết lập.' },
+        { error: 'NVIDIA_API_KEY chưa được cấu hình.' },
         { status: 500 }
       );
     }
 
-    // Lazy-initialize to avoid build-time errors when apiKey is missing
-    const ai = new GoogleGenAI({
-      apiKey,
-      httpOptions: { headers: { 'User-Agent': 'aistudio-build' } },
+    const messages = [
+      { role: 'system', content: systemInstruction },
+      ...(history || []).map((turn: any) => ({
+        role: turn.role === 'user' ? 'user' : 'assistant',
+        content: turn.content,
+      })),
+      { role: 'user', content: message }
+    ];
+
+    const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: modelName,
+        messages: messages,
+        temperature: 0.7,
+        top_p: 0.9,
+        max_tokens: 2048,
+      }),
     });
 
-
-    const formattedContents: { role: string; parts: { text: string }[] }[] = [];
-
-    if (history && Array.isArray(history)) {
-      for (const turn of history) {
-        formattedContents.push({
-          role: turn.role === 'user' ? 'user' : 'model',
-          parts: [{ text: turn.content }],
-        });
-      }
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Nvidia API error response:', errorText);
+      throw new Error(`Nvidia API error: ${response.status} - ${errorText}`);
     }
 
-    formattedContents.push({
-      role: 'user',
-      parts: [{ text: message }],
-    });
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content || '';
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: formattedContents,
-      config: {
-        systemInstruction,
-        temperature: 0.7,
-      },
-    });
-
-    return NextResponse.json({ reply: response.text });
+    return NextResponse.json({ reply });
   } catch (error: unknown) {
-    const errMsg = error instanceof Error ? error.message : 'Lỗi xử lý API từ Gemini';
-    console.error('Lỗi Gemini API:', error);
+    const errMsg = error instanceof Error ? error.message : 'Lỗi xử lý API từ Nvidia';
+    console.error('Lỗi Nvidia API:', error);
     return NextResponse.json({ error: errMsg }, { status: 500 });
   }
 }
