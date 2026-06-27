@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, CheckCircle2, BadgePercent, Truck, ShieldCheck, MapPin, Phone, Mail, Clock, Send, Facebook, Youtube, Share2 } from 'lucide-react';
+import { Sparkles, CheckCircle2, BadgePercent, Truck, ShieldCheck, MapPin, Phone, Mail, Clock, Send, Globe, Play, Share2 } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
 export default function Footer() {
@@ -114,14 +114,14 @@ export default function Footer() {
                   title="Theo dõi chúng tôi trên Facebook"
                   className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-text-secondary hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
                 >
-                  <Facebook className="w-4 h-4" />
+                  <Globe className="w-4 h-4" />
                 </a>
                 <a
                   href="#youtube"
                   title="Kênh Youtube của Linh Trang Home"
                   className="w-10 h-10 rounded-full bg-[#245B4A]/25 flex items-center justify-center border border-white/5 text-text-secondary hover:text-white hover:bg-primary-red hover:border-primary-red transition-all"
                 >
-                  <Youtube className="w-4 h-4" />
+                  <Play className="w-4 h-4" />
                 </a>
                 <a
                   href="#share"
