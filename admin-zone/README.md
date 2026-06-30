@@ -1,248 +1,158 @@
-<h1 align="center">Admin Dashboard Template with Next.js &amp; Shadcn UI</h1>
+<p align="center">
+  <a href="https://www.medusajs.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
+    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
+    </picture>
+  </a>
+</p>
+<h1 align="center">
+  Medusa DTC Starter
+</h1>
 
-<div align="center">Open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript</div>
-
-<br />
-
-<div align="center">
-  <a href="https://dub.sh/shadcn-dashboard"><strong>View Demo</strong></a>
-</div>
-<br />
-<div align="center">
-  <img src="/public/shadcn-dashboard.png" alt="Shadcn Dashboard Cover" style="max-width: 100%; border-radius: 8px;" />
-</div>
+<h4 align="center">
+  <a href="https://docs.medusajs.com">Documentation</a> |
+  <a href="https://www.medusajs.com">Website</a>
+</h4>
 
 <p align="center">
-  <a href="https://github.com/Kiranism/next-shadcn-dashboard-starter/stargazers"><img src="https://img.shields.io/github/stars/Kiranism/next-shadcn-dashboard-starter?style=social" alt="GitHub stars" /></a>
-  <a href="https://github.com/Kiranism/next-shadcn-dashboard-starter/network/members"><img src="https://img.shields.io/github/forks/Kiranism/next-shadcn-dashboard-starter?style=social" alt="Forks" /></a>
-  <a href="https://github.com/Kiranism/next-shadcn-dashboard-starter/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Kiranism/next-shadcn-dashboard-starter" alt="MIT License" /></a>
-  <img src="https://img.shields.io/badge/Next.js-16-black" alt="Next.js" />
-  <a href="https://go.clerk.com/ILdYhn7"><img src="https://img.shields.io/badge/Sponsored_by-Clerk-6C47FF?style=flat-square&logo=clerk" alt="Sponsored by Clerk" /></a>
+  Building blocks for digital commerce
+</p>
+<p align="center">
+  <a href="https://github.com/medusajs/medusa/blob/develop/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Medusa is released under the MIT license." />
+  </a>
+  <a href="https://circleci.com/gh/medusajs/medusa">
+    <img src="https://circleci.com/gh/medusajs/medusa.svg?style=shield" alt="Current CircleCI build status." />
+  </a>
+  <a href="https://github.com/medusajs/medusa/blob/develop/CONTRIBUTING.md">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
+  </a>
+    <a href="https://www.producthunt.com/posts/medusa"><img src="https://img.shields.io/badge/Product%20Hunt-%231%20Product%20of%20the%20Day-%23DA552E" alt="Product Hunt"></a>
+  <a href="https://discord.gg/xpCwq3Kfn8">
+    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
+  </a>
+  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
+    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
+  </a>
 </p>
 
-## Overview
+# Medusa DTC Starter
 
-An open source admin dashboard starter built with Next.js 16, shadcn/ui, TypeScript, and Tailwind CSS.
-
-It ships with authentication, charts, tables, forms, and a feature-based folder structure, so you can skip the boilerplate and start building. It works well as a base for SaaS apps, internal tools, and admin panels.
-
-### Tech Stack
-
-- Framework - [Next.js 16](https://nextjs.org/16)
-- Language - [TypeScript](https://www.typescriptlang.org)
-- Auth - [Clerk](https://go.clerk.com/ILdYhn7)
-- Error tracking - [Sentry](https://sentry.io/for/nextjs/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy26q2-nextjs&utm_content=github-banner-project-tryfree)
-- Styling - [Tailwind CSS v4](https://tailwindcss.com)
-- Components - [shadcn/ui](https://ui.shadcn.com)
-- Charts - [Recharts](https://recharts.org) • [Evil Charts](https://evilcharts.com/)
-- Schema validation - [Zod](https://zod.dev)
-- Data fetching - [TanStack React Query](https://tanstack.com/query)
-- State management - [Zustand](https://zustand-demo.pmnd.rs)
-- Search param state - [Nuqs](https://nuqs.47ng.com/)
-- Tables - [TanStack Data Tables](https://ui.shadcn.com/docs/components/data-table) • [Dice Table](https://www.diceui.com/docs/components/data-table)
-- Forms - [TanStack Form](https://tanstack.com/form) + [Zod](https://zod.dev)
-- Command+K interface - [kbar](https://kbar.vercel.app/)
-- Linter / Formatter - [OxLint](https://oxc.rs/docs/guide/usage/linter) • [Oxfmt](https://oxc.rs/docs/guide/usage/formatter)
-- Pre-commit hooks - [Husky](https://typicode.github.io/husky/)
-- Themes - [tweakcn](https://tweakcn.com/)
-
-_Looking for a TanStack Start version? Here's the [repo](https://git.new/tanstack-start-dashboard)._
+A production-ready monorepo starter for direct-to-consumer ecommerce stores powered by Medusa and Next.js. Includes a fully featured storefront with product browsing, cart, checkout, customer accounts, and order management.
 
 ## Features
 
-- Pre-built dashboard layout with sidebar, header, and content area
-- Analytics overview page with cards and charts
-- Data tables with React Query prefetch, client-side cache, search, filter, and pagination
-- Authentication and user management through Clerk
-- Multi-tenant workspaces using Clerk Organizations (create, switch, manage teams)
-- Billing and subscriptions via Clerk Billing for B2B, with plan management and feature gating
-- Client-side RBAC navigation that filters menu items by organization, permissions, and roles
-- Infobar component for tips, status messages, or contextual notes on any page
-- shadcn/ui components styled with Tailwind CSS
-- Six-plus themes with a theme switcher
-- Feature-based folder structure
-- A starting point for SaaS dashboards, internal tools, and client admin panels
-
-## Use Cases
-
-A few things you can build with it:
-
-- SaaS admin dashboards
-- Internal tools and operations panels
-- Analytics dashboards
-- Client project admin panels
-- A boilerplate for new Next.js shadcn projects
-
-## Pages
-
-| Page                                                                                                                                                                  | Notes                                                                                                                                                                                |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Signup / Signin](https://go.clerk.com/ILdYhn7)                                                                                                                       | Auth handled by Clerk, with passwordless sign-in, social logins, and enterprise SSO.                                                                                                |
-| [Dashboard Overview](https://shadcn-dashboard.kiranism.dev/dashboard)                                                                                                 | Cards and Recharts graphs. Parallel routes give each section its own loading and error state.                                                                                       |
-| [Product List (Table)](https://shadcn-dashboard.kiranism.dev/dashboard/product)                                                                                       | TanStack Table plus React Query (server prefetch, client cache) with nuqs URL state for search, filter, and pagination. `shallow: true` keeps interactions on the client.           |
-| [Create Product Form](https://shadcn-dashboard.kiranism.dev/dashboard/product/new)                                                                                    | TanStack Form and Zod with `useMutation` for create and update. Cache is invalidated on success.                                                                                    |
-| [Users (Table)](https://shadcn-dashboard.kiranism.dev/dashboard/users)                                                                                                | Same setup as Products: React Query with nuqs, server prefetch, and client-side pagination and filtering.                                                                           |
-| [React Query Demo](https://shadcn-dashboard.kiranism.dev/dashboard/react-query)                                                                                       | A Pokemon API example showing the server prefetch, `HydrationBoundary`, and `useSuspenseQuery` pattern with client-side cache.                                                      |
-| [Profile](https://shadcn-dashboard.kiranism.dev/dashboard/profile)                                                                                                   | Clerk's account management UI for profile and security settings.                                                                                                                    |
-| [Kanban Board](https://shadcn-dashboard.kiranism.dev/dashboard/kanban)                                                                                                | Drag-and-drop task board built with dnd-kit and Zustand. Column sorting, priority badges, assignees, and due dates.                                                                 |
-| [Chat](https://shadcn-dashboard.kiranism.dev/dashboard/chat)                                                                                                          | Messaging UI with a conversation list, message bubbles, quick replies, attachments, and an auto-reply demo. Multi-panel layout that works on mobile.                                |
-| [Notifications](https://shadcn-dashboard.kiranism.dev/dashboard/notifications)                                                                                        | Notification center with a header badge, popover preview, and a full page with All / Unread / Read tabs. Includes mark-as-read and mark-all-as-read.                                |
-| [Workspaces](https://shadcn-dashboard.kiranism.dev/dashboard/workspaces)                                                                                              | Organization management using Clerk's `<OrganizationList />`. View, create, and switch between organizations.                                                                       |
-| [Team Management](https://shadcn-dashboard.kiranism.dev/dashboard/workspaces/team)                                                                                    | Team management using Clerk's `<OrganizationProfile />`. Manage members, roles, permissions, security, and org details. Needs an active organization.                               |
-| [Billing & Plans](https://shadcn-dashboard.kiranism.dev/dashboard/billing)                                                                                            | Billing page using Clerk's `<PricingTable />`. View plans, subscribe, and manage subscriptions. Needs an active organization.                                                       |
-| [Exclusive Page](https://shadcn-dashboard.kiranism.dev/dashboard/exclusive)                                                                                           | Plan-based access control with Clerk's `<Protect>`. Only available to organizations on the Pro plan, with a fallback UI for everyone else.                                          |
-| [Not Found](https://shadcn-dashboard.kiranism.dev/dashboard/notfound)                                                                                                 | A root-level not-found page.                                                                                                                                                        |
-| [Global Error](https://sentry.io/for/nextjs/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy26q2-nextjs&utm_content=github-banner-project-tryfree) | A shared error page wired to Sentry for logging, reports, and session replay.                                                                                                       |
-
-## Folder Structure
-
-```plaintext
-src/
-├── app/                           # Next.js App Router directory
-│   ├── auth/                      # Auth pages (sign-in, sign-up)
-│   ├── dashboard/                 # Dashboard route group
-│   │   ├── overview/              # Analytics with parallel routes
-│   │   ├── product/               # Product CRUD pages (React Query)
-│   │   ├── users/                 # Users table (React Query + nuqs)
-│   │   ├── react-query/           # React Query demo page
-│   │   ├── kanban/                # Task board page
-│   │   ├── chat/                  # Messaging page
-│   │   ├── notifications/         # Notifications page
-│   │   ├── workspaces/            # Org management & teams
-│   │   ├── billing/               # Billing & plans
-│   │   ├── profile/               # User profile
-│   │   └── exclusive/             # Plan-gated page
-│   └── api/                       # API routes
-│
-├── components/                    # Shared components
-│   ├── ui/                        # UI primitives (buttons, inputs, kanban, etc.)
-│   ├── layout/                    # Layout components (header, sidebar, etc.)
-│   ├── themes/                    # Theme system (selector, mode toggle, config)
-│   └── kbar/                      # Command+K interface
-│
-├── features/                      # Feature-based modules
-│   ├── overview/                  # Dashboard analytics (charts, cards)
-│   ├── products/                  # Product listing, form, tables (React Query)
-│   ├── users/                     # User management table (React Query)
-│   ├── react-query-demo/          # React Query demo (Pokemon API)
-│   ├── kanban/                    # Drag-drop task board
-│   ├── chat/                      # Messaging (conversations, bubbles, composer)
-│   ├── notifications/             # Notification center & store
-│   ├── auth/                      # Auth components
-│   └── profile/                   # Profile form schemas
-│
-├── lib/                           # Core utilities (query-client, searchparams, etc.)
-├── hooks/                         # Custom hooks
-├── config/                        # Navigation, infobar, data table config
-├── constants/                     # Mock data
-├── styles/                        # Global CSS & theme files
-│   └── themes/                    # Individual theme CSS files
-└── types/                         # TypeScript types
-```
+- All of [Medusa's commerce features](https://docs.medusajs.com/resources/commerce-modules)
+- Multi-region support with automatic country detection
+- Product catalog with variant selection
+- Cart with promotion codes
+- Multi-step checkout with shipping and payment
+- Customer accounts with order history and address management
+- Order transfer between accounts
 
 ## Getting Started
 
-> [!NOTE]
-> This starter uses Next.js 16 (App Router) with React 19 and shadcn/ui. To run it locally:
+### Deploy with Medusa Cloud
 
-Clone the repo:
+The fastest way to get started is deploying with [Medusa Cloud](https://cloud.medusajs.com):
 
-```
-git clone https://github.com/Kiranism/next-shadcn-dashboard-starter.git
-```
+1. [Create a Medusa Cloud account](https://cloud.medusajs.com)
+2. Deploy this starter directly from your dashboard
 
-- `bun install`
-- Copy the example env file: `cp env.example.txt .env.local`
-- Fill in the required variables in `.env.local`
-- `bun run dev`
+### Local Installation
 
-##### Environment variables
+> **Prerequisites:
+>
+> - [Node.js](https://nodejs.org/) v20+
+> - [PostgreSQL](https://www.postgresql.org/) v15+
+> - [pnpm](https://pnpm.io/) v10+
 
-See `env.example.txt` for the variables you need. They cover authentication and error tracking.
-
-##### Clerk setup
-
-For setting up Clerk auth (including organizations, workspaces, and teams), see [clerk_setup.md](./docs/clerk_setup.md).
-
-The app should now be running at http://localhost:3000.
-
-> [!WARNING]
-> After cloning or forking, be careful when pulling the latest changes. Updates can cause merge conflicts.
-
----
-
-#### Cleanup
-
-To strip out features you don't need (auth, kanban, chat, notifications, extra themes, Sentry), run the cleanup script:
+1. Clone the repository and install dependencies:
 
 ```bash
-node scripts/cleanup.js --interactive   # interactive mode
-node scripts/cleanup.js --list          # see available features
-node scripts/cleanup.js --dry-run chat  # preview before removing
-node scripts/cleanup.js kanban chat     # remove specific features
+git clone https://github.com/medusajs/dtc-starter.git
+cd dtc-starter
+pnpm install
 ```
 
-Run `node scripts/cleanup.js --help` for all options. Delete `scripts/cleanup.js` when you're done.
-
-## Deploy
-
-The project includes Dockerfiles (`Dockerfile` for Node.js, `Dockerfile.bun` for Bun) that use standalone output mode. For other options, see the [Next.js deployment docs](https://nextjs.org/docs/app/getting-started/deploying).
-
-### Docker
-
-Build the image:
+2. Set up environment variables for the backend:
 
 ```bash
-# Node.js
-docker build \
-  --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_xxxxx \
-  -t shadcn-dashboard .
-
-# OR Bun
-docker build -f Dockerfile.bun \
-  --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_xxxxx \
-  -t shadcn-dashboard .
+cp apps/backend/.env.template apps/backend/.env
 ```
 
-Run the container:
+3. Set the database URL in `apps/backend.env`:
 
 ```bash
-docker run -d -p 3000:3000 \
-  -e NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_xxxxx \
-  -e CLERK_SECRET_KEY=sk_live_xxxxx \
-  --restart unless-stopped \
-  --name shadcn-dashboard \
-  shadcn-dashboard
+# Replace with actual database URL, make sure the database exists.
+DATABASE_URL=postgres://postgres:@localhost:5432/medusa-dtc-starter
 ```
 
-### Support
+4. Run migrations:
 
-If this template saved you some time, a star is appreciated. You can also [buy me a coffee](https://buymeacoffee.com/kir4n) if you'd like.
+```bash
+cd apps/backend
+pnpm medusa db:migrate
+```
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat-square&logo=buymeacoffee)](https://buymeacoffee.com/kir4n)
+5. Add admin user:
 
-<!--
+```bash
+cd apps/backend
+pnpm medusa user -e admin@test.com -p supersecret
+```
 
-SEO keywords:
+6. Start Medusa backend:
 
-open source admin dashboard, nextjs admin dashboard, nextjs dashboard template,
+```bash
+cd apps/backend
+pnpm dev
+```
 
-shadcn ui dashboard, admin dashboard starter, next.js 16, typescript dashboard,
+7. Open the admin dashboard at `localhost:9000/app` and log in. Retrieve your publishable API key at Settings > Publishable API key.
 
-dashboard ui template, nextjs shadcn admin panel, react admin dashboard,
+8. Set up environment variables for the storefront:
 
-tailwind css admin dashboard
+```bash
+cp apps/storefront/.env.template apps/storefront/.env.local
+```
 
--->
+9. Update `apps/storefront/.env.local` with your Medusa publishable API key:
 
----
+```bash
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_6c3...
+```
 
-## Star History
+10.  Start storefront:
 
-<a href="https://www.star-history.com/#Kiranism/next-shadcn-dashboard-starter&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Kiranism/next-shadcn-dashboard-starter&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Kiranism/next-shadcn-dashboard-starter&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Kiranism/next-shadcn-dashboard-starter&type=date&legend=top-left" />
- </picture>
-</a>
+```bash
+cd apps/storefront
+pnpm dev
+```
+
+The storefront runs on `http://localhost:8000`.
+
+You can slo run the following command from the root to start both backend and storefront:
+
+```bash
+pnpm dev
+```
+
+## Configuration
+
+The storefront is configured via environment variables in `apps/storefront/.env.local`:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` | Publishable API key from your Medusa backend | — |
+| `NEXT_PUBLIC_MEDUSA_BACKEND_URL` | URL of your Medusa backend | `http://localhost:9000` |
+| `NEXT_PUBLIC_DEFAULT_REGION` | Default region country code | `dk` |
+| `NEXT_PUBLIC_BASE_URL` | Base URL of the storefront | `https://localhost:8000` |
+| `NEXT_PUBLIC_STRIPE_KEY` | Stripe publishable key (optional) | — |
+
+## Resources
+
+- [Medusa Documentation](https://docs.medusajs.com)
+- [Medusa Cloud](https://cloud.medusajs.com)

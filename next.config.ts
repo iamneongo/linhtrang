@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-const adminAppUrl = process.env.ADMIN_APP_URL ?? 'http://localhost:3001';
+const adminAppUrl = process.env.ADMIN_APP_URL ?? 'http://localhost:9000';
 
 const nextConfig: NextConfig = {
   async rewrites() {
@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
       {
         source: '/admin/:path*',
         destination: `${adminAppUrl}/admin/:path*`,
+      },
+      {
+        source: '/app/:path*',
+        destination: `${adminAppUrl}/app/:path*`,
       },
     ];
   },
