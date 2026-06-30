@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
@@ -10,7 +10,9 @@ import * as LucideIcons from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import { categories, productsByCategoryId } from '@/data';
+import { categories as staticCategories, productsByCategoryId as staticProductsByCategoryId } from '@/data';
+import { fetchCategories, fetchProductsByCategoryId } from '@/lib/medusa';
+import { Category, Product } from '@/types';
 
 function DynamicIcon({ name, className }: { name: string; className?: string }) {
   const IconComponent = (LucideIcons as any)[name];
@@ -94,6 +96,15 @@ export default function CategoryDetailPage() {
   const params = useParams();
   const router = useRouter();
   const catId = params.id as string;
+
+  const [categories, setCategories] = useState<Category[]>(staticCategories);
+  const [productsByCategoryId, setProductsByCategoryId] = useState<Record<string, Product[]>>(staticProductsByCategoryId);
+
+  useEffect(() => {
+    fetchCategories().then(setCategories);
+    fetchProductsByCategoryId().then(setProductsByCategoryId);
+  }, []);
+
   const category = categories.find((c) => c.id === catId);
   const products = productsByCategoryId[catId] || [];
 

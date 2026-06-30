@@ -8,7 +8,8 @@ import { MapPin, Compass, Layers, X, Search, Check, ChevronDown, SlidersHorizont
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import { projects } from '@/data';
+import { projects as staticProjects } from '@/data';
+import { fetchProjects } from '@/lib/medusa';
 import { Project } from '@/types';
 
 interface Option {
@@ -85,7 +86,13 @@ function CustomSelect({ value, onChange, options }: CustomSelectProps) {
 
 function ProjectsContent() {
   const router = useRouter();
-  
+
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
+
+  useEffect(() => {
+    fetchProjects().then(setProjects);
+  }, []);
+
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('Tất cả');

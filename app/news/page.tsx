@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Search, BookOpen, Clock, X } from 'lucide-react';
@@ -8,12 +8,18 @@ import { Calendar, User, ArrowRight, Search, BookOpen, Clock, X } from 'lucide-r
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import { blogPosts } from '@/data';
+import { blogPosts as staticBlogPosts } from '@/data';
+import { fetchNews } from '@/lib/medusa';
 import { BlogPost } from '@/types';
 
 function NewsContent() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(staticBlogPosts);
+
+  useEffect(() => {
+    fetchNews().then(setBlogPosts);
+  }, []);
 
   // Filtering logic
   const filteredPosts = blogPosts.filter(post => {

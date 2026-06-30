@@ -1,13 +1,15 @@
 'use client';
 
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowLeft, ArrowRight, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import { blogPosts } from '@/data';
+import { blogPosts as staticBlogPosts } from '@/data';
+import { fetchNews } from '@/lib/medusa';
+import { BlogPost } from '@/types';
 
 function renderFormattedContent(content: string) {
   if (!content) return null;
@@ -55,6 +57,12 @@ function renderFormattedContent(content: string) {
 export default function NewsDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(staticBlogPosts);
+
+  useEffect(() => {
+    fetchNews().then(setBlogPosts);
+  }, []);
 
   const post = blogPosts.find(p => p.id === id);
   const currentIndex = blogPosts.findIndex(p => p.id === id);

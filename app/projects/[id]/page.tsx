@@ -1,17 +1,25 @@
 'use client';
 
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { MapPin, Calendar, Compass, Layers, ArrowLeft, ArrowRight, Phone } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import { projects } from '@/data';
+import { projects as staticProjects } from '@/data';
+import { fetchProjects } from '@/lib/medusa';
+import { Project } from '@/types';
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
+
+  useEffect(() => {
+    fetchProjects().then(setProjects);
+  }, []);
 
   const project = projects.find(p => p.id === id);
   const currentIndex = projects.findIndex(p => p.id === id);

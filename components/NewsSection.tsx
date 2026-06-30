@@ -2,8 +2,9 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User, Send, X, CheckCircle, ArrowRight } from 'lucide-react';
-import { ConsultationRequest } from '../types';
-import { blogPosts } from '../data';
+import { ConsultationRequest, BlogPost } from '../types';
+import { blogPosts as staticBlogPosts } from '../data';
+import { fetchNews } from '@/lib/medusa';
 
 interface NewsSectionProps {
   quoteFillProduct: string;
@@ -17,6 +18,12 @@ export default function NewsSection({
   onClearQuoteFill
 }: NewsSectionProps) {
   const router = useRouter();
+
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(staticBlogPosts);
+
+  useEffect(() => {
+    fetchNews().then(setBlogPosts);
+  }, []);
 
   const [formData, setFormData] = useState<ConsultationRequest>({
     fullName: '',

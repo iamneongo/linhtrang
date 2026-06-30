@@ -1,10 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { ArrowRight, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Category } from '../types';
-import { categories } from '../data';
+import { categories as staticCategories } from '../data';
+import { fetchCategories } from '@/lib/medusa';
 
 // Custom component helper to map strings to LucideIcons components safely
 function DynamicIcon({ name, className }: { name: string; className?: string }) {
@@ -15,7 +16,13 @@ function DynamicIcon({ name, className }: { name: string; className?: string }) 
 
 export default function ProductSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
-  
+  const [categories, setCategories] = useState<Category[]>(staticCategories);
+
+  useEffect(() => {
+    fetchCategories().then(setCategories);
+  }, []);
+
+
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
       const { scrollLeft, clientWidth } = carouselRef.current;

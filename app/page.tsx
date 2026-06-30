@@ -17,7 +17,8 @@ import NewsSection from '@/components/NewsSection';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 
-import { HERO_URL, productsByCategoryId } from '@/data';
+import { HERO_URL } from '@/data';
+import { fetchProductsByCategoryId } from '@/lib/medusa';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -56,6 +57,7 @@ function SearchParamsHandler({ setQuoteProduct }: { setQuoteProduct: (val: { nam
   useEffect(() => {
     const quoteCode = searchParams.get('quote');
     if (quoteCode) {
+      fetchProductsByCategoryId().then((productsByCategoryId) => {
       let foundProduct = null;
       for (const catId in productsByCategoryId) {
         const prod = productsByCategoryId[catId].find(p => p.code === quoteCode);
@@ -64,7 +66,7 @@ function SearchParamsHandler({ setQuoteProduct }: { setQuoteProduct: (val: { nam
           break;
         }
       }
-      
+
       if (foundProduct) {
         setQuoteProduct({ name: foundProduct.name, code: foundProduct.code });
         const element = document.getElementById('consultation');
@@ -75,6 +77,7 @@ function SearchParamsHandler({ setQuoteProduct }: { setQuoteProduct: (val: { nam
           }, 300);
         }
       }
+      });
     }
   }, [searchParams, setQuoteProduct]);
 

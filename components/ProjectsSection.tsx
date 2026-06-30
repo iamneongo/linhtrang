@@ -1,10 +1,18 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { MapPin, ArrowRight } from 'lucide-react';
-import { projects } from '../data';
+import { projects as staticProjects } from '../data';
+import { fetchProjects } from '@/lib/medusa';
+import { Project } from '@/types';
 
 export default function ProjectsSection() {
   const router = useRouter();
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
+
+  useEffect(() => {
+    fetchProjects().then(setProjects);
+  }, []);
 
   return (
     <section id="projects" className="py-20 bg-white text-slate-900 relative">
