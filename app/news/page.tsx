@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import { blogPosts as staticBlogPosts } from '@/data';
-import { fetchNews } from '@/lib/medusa';
+import { fetchNews } from '@/lib/content';
 import { BlogPost } from '@/types';
 
 function NewsContent() {
@@ -42,7 +42,7 @@ function NewsContent() {
     <div className="min-h-screen bg-[#245B4A] text-white font-sans overflow-x-hidden antialiased flex flex-col">
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
+        onProjectClick={(id) => router.push(`/projects/${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection="news"
       />

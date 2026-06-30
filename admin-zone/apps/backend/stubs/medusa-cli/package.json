@@ -1,0 +1,8 @@
+{
+  "name": "medusa",
+  "version": "0.0.0-stub",
+  "private": true,
+  "bin": {
+    "medusa": "bin/medusa.js"
+  }
+}

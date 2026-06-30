@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone, Search, ArrowRight, ExternalLink } from 'lucide-react';
-import { categories, projects } from '../data';
+import { categories as staticCategories, projects as staticProjects } from '../data';
+import { fetchCategories, fetchProjects } from '@/lib/content';
+import { Category, Project } from '@/types';
 import BrandLogo from './BrandLogo';
 
 interface HeaderProps {
@@ -21,9 +23,11 @@ export default function Header({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [categories, setCategories] = useState<Category[]>(staticCategories);
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
   const [searchResults, setSearchResults] = useState<{
-    categories: typeof categories;
-    projects: typeof projects;
+    categories: Category[];
+    projects: Project[];
   }>({ categories: [], projects: [] });
 
   // Handle scroll effect
@@ -33,6 +37,11 @@ export default function Header({
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetchCategories().then(setCategories);
+    fetchProjects().then(setProjects);
   }, []);
 
   // Handle live search
@@ -49,7 +58,7 @@ export default function Header({
       (p) => p.title.toLowerCase().includes(query) || p.style.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)
     );
     setSearchResults({ categories: filteredCats, projects: filteredProjs });
-  }, [searchQuery]);
+  }, [categories, projects, searchQuery]);
 
   const navItems = [
     { id: 'home', label: 'TRANG CHỦ' },

@@ -8,7 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import { blogPosts as staticBlogPosts } from '@/data';
-import { fetchNews } from '@/lib/medusa';
+import { fetchNews } from '@/lib/content';
 import { BlogPost } from '@/types';
 
 function renderFormattedContent(content: string) {
@@ -59,9 +59,12 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
   const router = useRouter();
 
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(staticBlogPosts);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchNews().then(setBlogPosts);
+    fetchNews()
+      .then(setBlogPosts)
+      .finally(() => setLoading(false));
   }, []);
 
   const post = blogPosts.find(p => p.id === id);
@@ -76,6 +79,17 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
     };
     router.push(routes[sectionId] || `/?section=${sectionId}`);
   };
+
+  if (!post && loading) {
+    return (
+      <div className="min-h-screen bg-[#245B4A] flex items-center justify-center text-white">
+        <div className="text-center">
+          <div className="w-10 h-10 border-4 border-primary-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-xs font-headline font-bold tracking-widest uppercase">Đang tải bài viết...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (

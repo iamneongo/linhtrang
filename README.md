@@ -2,19 +2,32 @@
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Linh Trang Home
 
-This contains everything you need to run your app locally.
+Website giới thiệu sản phẩm, dự án và tin tức của Linh Trang Home, hiện dùng `Payload CMS` để quản trị nội dung admin ngay trong cùng ứng dụng Next.js.
 
-View your app in AI Studio: https://ai.studio/apps/1e920db6-74ce-4cff-82d3-a22fa836d9b7
+## Chạy local
 
-## Run Locally
+Yêu cầu:
+- Node.js 22+
+- MongoDB local hoặc Docker
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
+1. Cài dependency:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Tạo file môi trường từ mẫu:
+   `cp .env.example .env.local`
+3. Khởi động MongoDB.
+   Nếu dùng Docker:
+   `docker compose up -d`
+4. Nạp dữ liệu mẫu ban đầu vào Payload:
+   `npm run seed:payload`
+5. Chạy app:
    `npm run dev`
+
+## Truy cập
+
+- Website: `http://localhost:3000`
+- Payload Admin: `http://localhost:3000/admin`
+- Payload API REST: `http://localhost:3000/cms-api`
+
+Lần đầu vào `/admin`, Payload sẽ cho tạo tài khoản quản trị đầu tiên nếu collection `users` chưa có dữ liệu.

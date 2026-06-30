@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
+    "allowImportingTsExtensions": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -26,8 +27,8 @@
       "@/*": [
         "./*"
       ],
-      "@admin/*": [
-        "./admin-zone/*"
+      "@payload-config": [
+        "./payload.config.ts"
       ]
     }
   },
@@ -40,7 +41,6 @@
   ],
   "exclude": [
     "node_modules",
-    "admin-dashboard",
-    "admin-zone"
+    "admin-dashboard"
   ]
 }

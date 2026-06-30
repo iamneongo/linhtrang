@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User, Send, X, CheckCircle, ArrowRight } from 'lucide-react';
 import { ConsultationRequest, BlogPost } from '../types';
 import { blogPosts as staticBlogPosts } from '../data';
-import { fetchNews } from '@/lib/medusa';
+import { fetchNews } from '@/lib/content';
 
 interface NewsSectionProps {
   quoteFillProduct: string;
@@ -120,7 +120,7 @@ export default function NewsSection({
               {blogPosts.map((post) => (
                 <div
                   key={post.id}
-                  onClick={() => router.push(`/news?id=${post.id}`)}
+                  onClick={() => router.push(`/news/${post.id}`)}
                   className="group cursor-pointer flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl hover:bg-white/[0.05] hover:border-primary-red/20 transition-all duration-300 shadow-lg hover:shadow-2xl"
                 >
                   <div className="rounded-xl overflow-hidden mb-4 aspect-video bg-black/20">

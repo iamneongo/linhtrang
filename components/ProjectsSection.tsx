@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { projects as staticProjects } from '../data';
-import { fetchProjects } from '@/lib/medusa';
+import { fetchProjects } from '@/lib/content';
 import { Project } from '@/types';
 
 export default function ProjectsSection() {
@@ -46,7 +46,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08, duration: 0.5 }}
-              onClick={() => router.push(`/projects?id=${proj.id}`)}
+              onClick={() => router.push(`/projects/${proj.id}`)}
               className="group cursor-pointer flex flex-col"
             >
               {/* Product background with scale hover */}

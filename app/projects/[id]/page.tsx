@@ -8,7 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import { projects as staticProjects } from '@/data';
-import { fetchProjects } from '@/lib/medusa';
+import { fetchProjects } from '@/lib/content';
 import { Project } from '@/types';
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -16,9 +16,12 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const router = useRouter();
 
   const [projects, setProjects] = useState<Project[]>(staticProjects);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProjects().then(setProjects);
+    fetchProjects()
+      .then(setProjects)
+      .finally(() => setLoading(false));
   }, []);
 
   const project = projects.find(p => p.id === id);
@@ -34,6 +37,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     };
     router.push(routes[sectionId] || `/?section=${sectionId}`);
   };
+
+  if (!project && loading) {
+    return (
+      <div className="min-h-screen bg-[#245B4A] flex items-center justify-center text-white">
+        <div className="text-center">
+          <div className="w-10 h-10 border-4 border-primary-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-xs font-headline font-bold tracking-widest uppercase">Đang tải dự án...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!project) {
     return (

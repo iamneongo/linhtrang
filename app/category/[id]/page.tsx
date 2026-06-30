@@ -11,7 +11,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import { categories as staticCategories, productsByCategoryId as staticProductsByCategoryId } from '@/data';
-import { fetchCategories, fetchProductsByCategoryId } from '@/lib/medusa';
+import { fetchCategories, fetchProductsByCategoryId } from '@/lib/content';
 import { Category, Product } from '@/types';
 
 function DynamicIcon({ name, className }: { name: string; className?: string }) {
@@ -99,10 +99,15 @@ export default function CategoryDetailPage() {
 
   const [categories, setCategories] = useState<Category[]>(staticCategories);
   const [productsByCategoryId, setProductsByCategoryId] = useState<Record<string, Product[]>>(staticProductsByCategoryId);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchCategories().then(setCategories);
-    fetchProductsByCategoryId().then(setProductsByCategoryId);
+    Promise.all([fetchCategories(), fetchProductsByCategoryId()])
+      .then(([nextCategories, nextProducts]) => {
+        setCategories(nextCategories);
+        setProductsByCategoryId(nextProducts);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const category = categories.find((c) => c.id === catId);
@@ -112,6 +117,17 @@ export default function CategoryDetailPage() {
   const [selectedBrand, setSelectedBrand] = useState<string>('Tất cả');
   const [selectedMaterial, setSelectedMaterial] = useState<string>('Tất cả');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  if (!category && loading) {
+    return (
+      <div className="min-h-screen bg-[#245B4A] flex items-center justify-center text-white">
+        <div className="text-center">
+          <div className="w-10 h-10 border-4 border-primary-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-xs font-headline font-bold tracking-widest uppercase">Đang tải danh mục...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!category) {
     return (
@@ -177,7 +193,7 @@ export default function CategoryDetailPage() {
 
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
+        onProjectClick={(id) => router.push(`/projects/${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection=""
       />

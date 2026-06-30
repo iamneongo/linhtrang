@@ -18,7 +18,7 @@ import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 
 import { HERO_URL } from '@/data';
-import { fetchProductsByCategoryId } from '@/lib/medusa';
+import { fetchProductsByCategoryId } from '@/lib/content';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -189,7 +189,7 @@ export default function HomePage() {
       </Suspense>
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
+        onProjectClick={(id) => router.push(`/projects/${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection={activeSection}
       />

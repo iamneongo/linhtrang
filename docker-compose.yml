@@ -1,0 +1,14 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - '27017:27017'
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - payload-mongo-data:/data/db
+    logging:
+      driver: none
+
+volumes:
+  payload-mongo-data:

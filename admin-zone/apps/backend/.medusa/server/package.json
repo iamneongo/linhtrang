@@ -1,0 +1,9 @@
+{
+  "name": "linhtrang-medusa-runtime-stub",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Runtime shim for Dokploy's legacy Medusa start command",
+  "dependencies": {
+    "medusa": "file:../../stubs/medusa-cli"
+  }
+}

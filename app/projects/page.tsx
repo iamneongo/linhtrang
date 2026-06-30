@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import { projects as staticProjects } from '@/data';
-import { fetchProjects } from '@/lib/medusa';
+import { fetchProjects } from '@/lib/content';
 import { Project } from '@/types';
 
 interface Option {

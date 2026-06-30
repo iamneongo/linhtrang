@@ -1,26 +1,35 @@
+import { withPayload } from '@payloadcms/next/withPayload';
+import path from 'path';
 import type { NextConfig } from 'next';
+import { fileURLToPath } from 'url';
 
-const adminAppUrl = process.env.ADMIN_APP_URL ?? 'http://localhost:9000';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const nextConfig: NextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: '/admin/:path*',
-        destination: `${adminAppUrl}/admin/:path*`,
-      },
-      {
-        source: '/app/:path*',
-        destination: `${adminAppUrl}/app/:path*`,
-      },
-    ];
-  },
   images: {
+    localPatterns: [
+      {
+        pathname: '/api/media/file/**',
+      },
+    ],
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
     ],
   },
+  webpack: (webpackConfig) => {
+    webpackConfig.resolve.extensionAlias = {
+      '.cjs': ['.cts', '.cjs'],
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+    };
+
+    return webpackConfig;
+  },
+  turbopack: {
+    root: path.resolve(dirname),
+  },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig, { devBundleServerPackages: false });

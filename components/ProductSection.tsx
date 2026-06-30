@@ -5,7 +5,7 @@ import { ArrowRight, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 import * as LucideIcons from 'lucide-react';
 import { Category } from '../types';
 import { categories as staticCategories } from '../data';
-import { fetchCategories } from '@/lib/medusa';
+import { fetchCategories } from '@/lib/content';
 
 // Custom component helper to map strings to LucideIcons components safely
 function DynamicIcon({ name, className }: { name: string; className?: string }) {

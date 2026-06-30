@@ -69,7 +69,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#245B4A] text-white font-sans overflow-x-hidden antialiased flex flex-col">
       <Header
         onCategoryClick={(id) => router.push(`/category/${id}`)}
-        onProjectClick={(id) => router.push(`/projects?id=${id}`)}
+        onProjectClick={(id) => router.push(`/projects/${id}`)}
         onNavigateToSection={handleNavigateToSection}
         activeSection="about"
       />
