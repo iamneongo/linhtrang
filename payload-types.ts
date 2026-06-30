@@ -90,7 +90,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: null;
   globals: {};
@@ -128,7 +128,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   fullName?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -154,7 +154,7 @@ export interface User {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   name: string;
   /**
    * Dùng cho URL public của website.
@@ -173,13 +173,13 @@ export interface Category {
  * via the `definition` "products".
  */
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   /**
    * Dùng cho URL public của website.
    */
   slug: string;
-  category: string | Category;
+  category: number | Category;
   code: string;
   imageUrl: string;
   origin: string;
@@ -196,7 +196,7 @@ export interface Product {
  * via the `definition` "projects".
  */
 export interface Project {
-  id: string;
+  id: number;
   title: string;
   /**
    * Dùng cho URL public của website.
@@ -219,7 +219,7 @@ export interface Project {
  * via the `definition` "news".
  */
 export interface News {
-  id: string;
+  id: number;
   title: string;
   /**
    * Dùng cho URL public của website.
@@ -239,7 +239,7 @@ export interface News {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -256,32 +256,32 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'categories';
-        value: string | Category;
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'products';
-        value: string | Product;
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'projects';
-        value: string | Project;
+        value: number | Project;
       } | null)
     | ({
         relationTo: 'news';
-        value: string | News;
+        value: number | News;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -291,10 +291,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -314,7 +314,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;

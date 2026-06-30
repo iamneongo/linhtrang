@@ -1,14 +1,16 @@
 services:
-  mongo:
-    image: mongo:7
+  postgres:
+    image: postgres:17
     ports:
-      - '27017:27017'
-    command:
-      - --storageEngine=wiredTiger
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: linhtrang_payload
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
-      - payload-mongo-data:/data/db
+      - payload-postgres-data:/var/lib/postgresql/data
     logging:
       driver: none
 
 volumes:
-  payload-mongo-data:
+  payload-postgres-data:

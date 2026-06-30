@@ -41,6 +41,7 @@ type ProductDoc = {
   price?: string;
   description?: string;
   category?:
+    | number
     | string
     | {
         slug?: string;

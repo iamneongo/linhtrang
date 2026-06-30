@@ -1,33 +1,34 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+<img width="1200" height="475" alt="GHBanner" src="https://payloadcms.com/images/meta-image.png" />
 </div>
 
 # Linh Trang Home
 
-Website giới thiệu sản phẩm, dự án và tin tức của Linh Trang Home, hiện dùng `Payload CMS` để quản trị nội dung admin ngay trong cùng ứng dụng Next.js.
+Linh Trang Home now uses `Payload CMS` inside the same Next.js app for the admin experience, with PostgreSQL as the backing database.
 
-## Chạy local
+## Run locally
 
-Yêu cầu:
+Requirements:
 - Node.js 22+
-- MongoDB local hoặc Docker
+- PostgreSQL or Neon
 
-1. Cài dependency:
+1. Install dependencies:
    `npm install`
-2. Tạo file môi trường từ mẫu:
+2. Copy the environment template:
    `cp .env.example .env.local`
-3. Khởi động MongoDB.
-   Nếu dùng Docker:
-   `docker compose up -d`
-4. Nạp dữ liệu mẫu ban đầu vào Payload:
+3. Set `DATABASE_URL` in `.env.local`.
+   For Neon, use your pooled connection string with SSL enabled.
+4. Seed initial Payload data:
    `npm run seed:payload`
-5. Chạy app:
+5. Start the app:
    `npm run dev`
 
-## Truy cập
+Payload will auto-sync the schema in development when it connects to PostgreSQL.
+
+## Access
 
 - Website: `http://localhost:3000`
 - Payload Admin: `http://localhost:3000/admin`
-- Payload API REST: `http://localhost:3000/cms-api`
+- Payload REST API: `http://localhost:3000/cms-api`
 
-Lần đầu vào `/admin`, Payload sẽ cho tạo tài khoản quản trị đầu tiên nếu collection `users` chưa có dữ liệu.
+On the first visit to `/admin`, Payload will let you create the initial admin user if the `users` collection is empty.

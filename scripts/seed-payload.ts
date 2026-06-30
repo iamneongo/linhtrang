@@ -1,5 +1,5 @@
 // @ts-nocheck
-import 'dotenv/config';
+import '../lib/loadEnv.ts';
 
 import { getPayload } from 'payload';
 
@@ -83,7 +83,7 @@ async function upsertProductByCode(
 
 async function main() {
   const payload = await getPayload({ config: configPromise });
-  const categoryIds = new Map<string, string>();
+  const categoryIds = new Map<string, number | string>();
 
   for (const [index, category] of categories.entries()) {
     const id = await upsertBySlug(payload, 'categories', category.id, {
@@ -96,7 +96,7 @@ async function main() {
       sortOrder: index,
     });
 
-    categoryIds.set(category.id, String(id));
+    categoryIds.set(category.id, id);
   }
 
   for (const [index, project] of projects.entries()) {
