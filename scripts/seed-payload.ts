@@ -6,6 +6,7 @@ import { getPayload } from 'payload';
 import configPromise from '../payload.config.ts';
 import { blogPosts, categories, productsByCategoryId, projects } from '../data';
 import { slugify } from '../lib/slugify.ts';
+import { normalizeRichText } from '../lib/rich-text.ts';
 
 function parseDate(date: string) {
   const [day, month, year] = date.split('/');
@@ -91,7 +92,7 @@ async function main() {
       slug: category.id,
       iconName: category.iconName,
       imageUrl: category.imageUrl,
-      description: category.description,
+      description: normalizeRichText(category.description),
       badge: category.badge,
       sortOrder: index,
     });
@@ -109,7 +110,7 @@ async function main() {
       year: project.year,
       area: project.area,
       style: project.style,
-      description: project.description,
+      description: normalizeRichText(project.description),
       featured: index < 4,
       sortOrder: index,
     });
@@ -122,8 +123,8 @@ async function main() {
       imageUrl: post.imageUrl,
       publishedAt: parseDate(post.date),
       author: post.author,
-      summary: post.summary,
-      content: post.content,
+      summary: normalizeRichText(post.summary),
+      content: normalizeRichText(post.content),
       sortOrder: index,
     });
   }
@@ -146,7 +147,7 @@ async function main() {
         material: product.material,
         size: product.size,
         price: product.price,
-        description: product.description,
+        description: normalizeRichText(product.description),
         sortOrder: productIndex,
       });
       productIndex += 1;

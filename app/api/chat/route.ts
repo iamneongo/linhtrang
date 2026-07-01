@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const apiKey = process.env.NVIDIA_API_KEY || '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';
-const modelName = 'meta/llama-3.3-70b-instruct';
+const modelName = process.env.NVIDIA_MODEL_NAME?.trim() || 'meta/llama-3.1-8b-instruct';
+const maxHistoryTurns = 6;
 
 const systemInstruction = `Bạn là MIA, một Trợ Lý Ảo Thiết Kế Nội Thất & Vật Liệu Cao Cấp cực kỳ thông minh, duy mỹ, và tận tâm của "Linh Trang Home" (Showroom tại 81 Hùng Vương, Phường Lâm Viên, TP. Đà Lạt, Lâm Đồng hoặc tại Thanh Hóa & Hà Nội. Hotline: 0977.247.623). Châm ngôn: "Nâng Tầm Không Gian Sống Của Bạn".
 
@@ -49,6 +49,7 @@ HƯỚNG DẪN TRẢ LỜI:
 
 export async function POST(request: NextRequest) {
   try {
+    const apiKey = process.env.NVIDIA_API_KEY?.trim();
     const { message, history } = await request.json();
 
     if (!message) {
@@ -62,29 +63,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const recentHistory = Array.isArray(history) ? history.slice(-maxHistoryTurns) : [];
+
     const messages = [
       { role: 'system', content: systemInstruction },
-      ...(history || []).map((turn: any) => ({
+      ...recentHistory.map((turn: any) => ({
         role: turn.role === 'user' ? 'user' : 'assistant',
         content: turn.content,
       })),
       { role: 'user', content: message }
     ];
 
-    const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: modelName,
-        messages: messages,
-        temperature: 0.7,
-        top_p: 0.9,
-        max_tokens: 2048,
-      }),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 45000);
+
+    let response: Response;
+    try {
+      response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: modelName,
+          messages: messages,
+          temperature: 0.4,
+          top_p: 0.9,
+          max_tokens: 768,
+        }),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (controller.signal.aborted) {
+      return NextResponse.json(
+        { error: 'Yêu cầu tới NVIDIA bị quá thời gian chờ.' },
+        { status: 504 }
+      );
+    }
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -97,6 +116,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ reply });
   } catch (error: unknown) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return NextResponse.json(
+        { error: 'Yêu cầu tới NVIDIA bị quá thời gian chờ.' },
+        { status: 504 }
+      );
+    }
+
     const errMsg = error instanceof Error ? error.message : 'Lỗi xử lý API từ Nvidia';
     console.error('Lỗi Nvidia API:', error);
     return NextResponse.json({ error: errMsg }, { status: 500 });
