@@ -55,7 +55,7 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
       label: 'Mô tả',
       required: true,
     },

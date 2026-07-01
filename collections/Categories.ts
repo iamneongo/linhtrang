@@ -32,7 +32,7 @@ export const Categories: CollectionConfig = {
     imageUrlField,
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
       label: 'Mô tả',
       required: true,
     },

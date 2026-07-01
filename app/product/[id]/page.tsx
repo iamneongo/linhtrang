@@ -8,6 +8,7 @@ import { ArrowLeft, Check, Copy, ShoppingBag } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
+import RichTextContent from '@/components/RichTextContent';
 import {
   categories as staticCategories,
   productsByCategoryId as staticProductsByCategoryId,
@@ -160,9 +161,11 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-8">
-              {product.description}
-            </p>
+            <RichTextContent
+              className="text-xs md:text-sm text-text-secondary mb-8"
+              fallbackText={product.description}
+              html={product.descriptionHTML}
+            />
 
             <div className="space-y-3 bg-[#327863]/35 p-5 rounded-2xl border border-white/10 mb-8 text-xs md:text-sm max-w-xl shadow-inner">
               <div className="flex justify-between items-center pb-2.5 border-b border-white/5">

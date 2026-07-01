@@ -1,4 +1,5 @@
-import type { Category, Product, Project, BlogPost } from '@/types';
+import { getRichTextContent } from '@/lib/rich-text';
+import type { BlogPost, Category, Product, Project } from '@/types';
 
 function asText(value: unknown): string {
   return typeof value === 'string' ? value : '';
@@ -26,7 +27,7 @@ type CategoryDoc = {
   slug?: string;
   iconName?: string;
   imageUrl?: string;
-  description?: string;
+  description?: unknown;
   badge?: string;
 };
 
@@ -39,7 +40,7 @@ type ProductDoc = {
   material?: string;
   size?: string;
   price?: string;
-  description?: string;
+  description?: unknown;
   category?:
     | number
     | string
@@ -57,7 +58,7 @@ type ProjectDoc = {
   year?: string;
   area?: string;
   style?: string;
-  description?: string;
+  description?: unknown;
 };
 
 type NewsDoc = {
@@ -66,22 +67,26 @@ type NewsDoc = {
   imageUrl?: string;
   publishedAt?: string;
   author?: string;
-  summary?: string;
-  content?: string;
+  summary?: unknown;
+  content?: unknown;
 };
 
 export function mapCategoryDoc(doc: CategoryDoc): Category {
+  const description = getRichTextContent(doc.description);
+
   return {
     id: asText(doc.slug),
     name: asText(doc.name),
     iconName: asText(doc.iconName) || 'HelpCircle',
     imageUrl: asText(doc.imageUrl),
-    description: asText(doc.description),
+    description: description.text,
+    descriptionHTML: description.html,
     badge: asText(doc.badge),
   };
 }
 
 export function mapProductDoc(doc: ProductDoc): Product {
+  const description = getRichTextContent(doc.description);
   const categorySlug =
     typeof doc.category === 'object' && doc.category
       ? asText(doc.category.slug)
@@ -96,12 +101,15 @@ export function mapProductDoc(doc: ProductDoc): Product {
     origin: asText(doc.origin),
     material: asText(doc.material),
     size: asText(doc.size),
-    price: asText(doc.price) || 'Liên hệ',
-    description: asText(doc.description),
+    price: asText(doc.price) || 'Lien he',
+    description: description.text,
+    descriptionHTML: description.html,
   };
 }
 
 export function mapProjectDoc(doc: ProjectDoc): Project {
+  const description = getRichTextContent(doc.description);
+
   return {
     id: asText(doc.slug),
     title: asText(doc.title),
@@ -111,18 +119,24 @@ export function mapProjectDoc(doc: ProjectDoc): Project {
     year: asText(doc.year),
     area: asText(doc.area),
     style: asText(doc.style),
-    description: asText(doc.description),
+    description: description.text,
+    descriptionHTML: description.html,
   };
 }
 
 export function mapNewsDoc(doc: NewsDoc): BlogPost {
+  const summary = getRichTextContent(doc.summary);
+  const content = getRichTextContent(doc.content);
+
   return {
     id: asText(doc.slug),
     title: asText(doc.title),
     imageUrl: asText(doc.imageUrl),
     date: formatDate(doc.publishedAt),
     author: asText(doc.author),
-    summary: asText(doc.summary),
-    content: asText(doc.content),
+    summary: summary.text,
+    summaryHTML: summary.html,
+    content: content.text,
+    contentHTML: content.html,
   };
 }

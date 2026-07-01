@@ -4,6 +4,7 @@ export interface Category {
   iconName: string; // Lucide icon name or React component
   imageUrl: string;
   description: string;
+  descriptionHTML?: string;
   badge: string;
 }
 
@@ -17,6 +18,7 @@ export interface Project {
   area: string;
   style: string;
   description: string;
+  descriptionHTML?: string;
 }
 
 export interface Product {
@@ -30,6 +32,7 @@ export interface Product {
   size: string;
   price: string;
   description: string;
+  descriptionHTML?: string;
 }
 
 export interface BlogPost {
@@ -39,7 +42,9 @@ export interface BlogPost {
   date: string;
   author: string;
   summary: string;
+  summaryHTML?: string;
   content: string;
+  contentHTML?: string;
 }
 
 export interface ConsultationRequest {

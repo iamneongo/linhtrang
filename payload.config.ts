@@ -1,6 +1,7 @@
 import './lib/loadEnv.ts';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
@@ -31,6 +32,9 @@ export default buildConfig({
     graphQLPlayground: '/cms-api/graphql-playground',
   },
   collections: [Users, Categories, Products, Projects, News],
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature(), InlineToolbarFeature()],
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

@@ -65,7 +65,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
       label: 'Mô tả',
       required: true,
     },

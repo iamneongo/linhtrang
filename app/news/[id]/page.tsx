@@ -7,52 +7,10 @@ import { Calendar, User, ArrowLeft, ArrowRight, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
+import RichTextContent from '@/components/RichTextContent';
 import { blogPosts as staticBlogPosts } from '@/data';
 import { fetchNews } from '@/lib/content';
 import { BlogPost } from '@/types';
-
-function renderFormattedContent(content: string) {
-  if (!content) return null;
-  const items = content.split('\n');
-  return items.map((paragraph, idx) => {
-    if (!paragraph.trim()) return <div key={idx} className="h-3" />;
-
-    if (paragraph.startsWith('### ')) {
-      return (
-        <h4 key={idx} className="font-headline text-lg font-bold text-[#245B4A] mt-8 mb-3 uppercase tracking-wide border-l-4 border-primary-red pl-4">
-          {paragraph.replace('### ', '')}
-        </h4>
-      );
-    }
-
-    if (paragraph.match(/^\d+\.\s/)) {
-      const textContent = paragraph.replace(/^\d+\.\s/, '');
-      const number = paragraph.match(/^\d+/)?.[0];
-      const parts = textContent.split(/\*\*(.*?)\*\*/g);
-      return (
-        <div key={idx} className="flex gap-3 text-sm leading-relaxed text-slate-700 my-3">
-          <span className="w-6 h-6 rounded-full bg-primary-red text-white font-headline font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-            {number}
-          </span>
-          <p className="flex-1">
-            {parts.map((part, partIdx) =>
-              partIdx % 2 === 1 ? <strong key={partIdx} className="font-bold text-slate-900">{part}</strong> : part
-            )}
-          </p>
-        </div>
-      );
-    }
-
-    const parts = paragraph.split(/\*\*(.*?)\*\*/g);
-    return (
-      <p key={idx} className="text-sm text-slate-700 leading-relaxed mb-4 font-sans">
-        {parts.map((part, partIdx) =>
-          partIdx % 2 === 1 ? <strong key={partIdx} className="font-bold text-slate-900">{part}</strong> : part
-        )}
-      </p>
-    );
-  });
-}
 
 export default function NewsDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -105,7 +63,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
   }
 
   // Estimate read time
-  const wordCount = post.content.split(' ').length;
+  const wordCount = post.content.trim() ? post.content.trim().split(/\s+/).length : 0;
   const readTime = Math.max(1, Math.round(wordCount / 200));
 
   return (
@@ -175,23 +133,31 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
           </motion.div>
 
           {/* Summary lead */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-base text-slate-600 leading-relaxed font-medium mb-8 p-6 bg-[#245B4A]/5 border-l-4 border-[#245B4A] rounded-r-xl"
+            className="mb-8 p-6 bg-[#245B4A]/5 border-l-4 border-[#245B4A] rounded-r-xl"
           >
-            {post.summary}
-          </motion.p>
+            <RichTextContent
+              className="text-base text-slate-600 font-medium"
+              fallbackText={post.summary}
+              html={post.summaryHTML}
+            />
+          </motion.div>
 
           {/* Full content */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="prose prose-slate max-w-none"
+            className="max-w-none"
           >
-            {renderFormattedContent(post.content)}
+            <RichTextContent
+              className="text-sm md:text-base text-slate-700"
+              fallbackText={post.content}
+              html={post.contentHTML}
+            />
           </motion.div>
 
           {/* Tags */}

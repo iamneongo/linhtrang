@@ -7,6 +7,7 @@ import { MapPin, Calendar, Compass, Layers, ArrowLeft, ArrowRight, Phone } from 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
+import RichTextContent from '@/components/RichTextContent';
 import { projects as staticProjects } from '@/data';
 import { fetchProjects } from '@/lib/content';
 import { Project } from '@/types';
@@ -144,9 +145,11 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   <span className="w-1 h-6 bg-primary-red rounded-full inline-block" />
                   Mô tả công trình
                 </h2>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-10">
-                  {project.description}
-                </p>
+                <RichTextContent
+                  className="text-sm md:text-base text-slate-600 mb-10"
+                  fallbackText={project.description}
+                  html={project.descriptionHTML}
+                />
 
                 {/* Image gallery (single image repeated for demo) */}
                 <div className="grid grid-cols-2 gap-4 mb-10">

@@ -43,18 +43,15 @@ export const News: CollectionConfig = {
     },
     {
       name: 'summary',
-      type: 'textarea',
+      type: 'richText',
       label: 'Tóm tắt',
       required: true,
     },
     {
       name: 'content',
-      type: 'textarea',
+      type: 'richText',
       label: 'Nội dung',
       required: true,
-      admin: {
-        rows: 18,
-      },
     },
     sortOrderField,
   ],
