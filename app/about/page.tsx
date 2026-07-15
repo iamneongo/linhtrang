@@ -13,9 +13,9 @@ export default function AboutPage() {
   const router = useRouter();
 
   const stats = [
-    { id: 's1', icon: Sparkles, value: '10+', label: 'Năm kinh nghiệm', description: 'Đồng hành cùng mọi đại công trình lớn' },
-    { id: 's2', icon: Users2, value: '5000+', label: 'Khách hàng tin tưởng', description: 'Sự hài lòng tuyệt đối làm kim chỉ nam' },
-    { id: 's3', icon: Building2, value: '1000+', label: 'Dự án hoàn thành', description: 'Biệt thự, đại lộ sảnh và resort nghỉ dưỡng' },
+    { id: 's1', icon: Sparkles, value: '10+', label: 'Năm kinh nghiệm', description: 'Đồng hành cùng nhiều công trình dân dụng và nghỉ dưỡng' },
+    { id: 's2', icon: Users2, value: '5000+', label: 'Khách hàng tin tưởng', description: 'Tập trung vào trải nghiệm tư vấn rõ ràng và chuyên nghiệp' },
+    { id: 's3', icon: Building2, value: '1000+', label: 'Dự án hoàn thành', description: 'Biệt thự, căn hộ, khách sạn và resort nghỉ dưỡng' },
     { id: 's4', icon: ShieldCheck, value: '50+', label: 'Đối tác thương hiệu', description: 'Hợp tác chặt chẽ cùng các nhãn hàng quốc tế' },
   ];
 
@@ -23,17 +23,17 @@ export default function AboutPage() {
     {
       id: 'v1', icon: Award,
       title: 'Sản phẩm chính hãng 100%',
-      desc: 'Toàn bộ vật liệu, thiết bị vệ sinh được tuyển chọn khắt khe trực tiếp từ hệ thống đối tác quốc tế chất lượng uy tín nhất.',
+      desc: 'Toàn bộ vật liệu và thiết bị vệ sinh được tuyển chọn từ các đối tác uy tín, đi kèm thông tin xuất xứ và chất lượng rõ ràng.',
     },
     {
       id: 'v2', icon: Sparkles,
       title: 'Giá cả đi đôi với chất lượng',
-      desc: 'Chính sách giá minh bạch, tối ưu, ổn định bền vững giúp chủ đầu tư kiểm soát chi phí thi công xây dựng an tâm nhất.',
+      desc: 'Chính sách giá minh bạch và tư vấn theo đúng nhu cầu giúp chủ đầu tư chủ động kiểm soát ngân sách cho từng hạng mục.',
     },
     {
       id: 'v3', icon: HeartHandshake,
-      title: 'Chính sách hậu mãi & bảo hành vàng',
-      desc: 'Linh Trang Home đồng hành trọn đời mọi dự án. Đội ngũ kỹ thuật túc trực 24/7 giải quyết mọi rủi ro về vật liệu dứt điểm siêu tốc.',
+      title: 'Hậu mãi và bảo hành rõ ràng',
+      desc: 'Linh Trang Home hỗ trợ khách hàng trong suốt quá trình lựa chọn, lắp đặt và sử dụng với chính sách hậu mãi minh bạch, dễ theo dõi.',
     },
     {
       id: 'v4', icon: Briefcase,
@@ -105,7 +105,7 @@ export default function AboutPage() {
               <span className="text-primary-red">TRANG HOME</span>
             </h1>
             <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl drop-shadow">
-              Hơn 10 năm kinh nghiệm phân phối độc quyền vật liệu xây dựng cao cấp và thiết bị vệ sinh nhập khẩu từ châu Âu — Linh Trang Home là điểm tựa tin cậy cho mọi đại công trình đẳng cấp.
+              Hơn 10 năm kinh nghiệm trong lĩnh vực vật liệu hoàn thiện và thiết bị vệ sinh nhập khẩu, Linh Trang Home đồng hành cùng khách hàng để hoàn thiện những không gian sống chỉn chu và bền đẹp.
             </p>
           </motion.div>
         </div>
@@ -155,10 +155,10 @@ export default function AboutPage() {
                   <span className="absolute bottom-0 left-0 w-16 h-1 bg-primary-red rounded-full" />
                 </h2>
                 <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4">
-                  Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp gạch ốp lát cao cấp, thiết bị vệ sinh nhập khẩu và nội thất tinh tế hàng đầu, Linh Trang Home luôn nỗ lực không ngừng nghỉ để kiến tạo nên những công trình đẳng cấp quốc tế.
+                  Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp gạch ốp lát cao cấp, thiết bị vệ sinh nhập khẩu và nội thất chọn lọc, Linh Trang Home mang đến giải pháp phù hợp cho từng phong cách không gian và nhu cầu sử dụng thực tế.
                 </p>
                 <p className="text-sm md:text-base text-white/70 leading-relaxed">
-                  Chúng tôi tin rằng mỗi không gian sống xứng đáng được hoàn thiện bằng những vật liệu tốt nhất — và đó là lý do chúng tôi không ngừng tìm kiếm, tuyển chọn và mang đến những sản phẩm cao cấp nhất từ khắp châu Âu.
+                  Chúng tôi tin rằng mỗi không gian sống cần được hoàn thiện bằng vật liệu phù hợp, bền vững và có tính thẩm mỹ lâu dài. Đó là lý do Linh Trang Home luôn chú trọng khâu tuyển chọn sản phẩm và tư vấn ứng dụng thực tế.
                 </p>
               </div>
 
@@ -307,7 +307,7 @@ export default function AboutPage() {
             <span className="text-primary-red">đẳng cấp cùng chúng tôi?</span>
           </h2>
           <p className="text-white/60 text-sm mb-8 max-w-lg mx-auto">
-            Đội ngũ chuyên gia Linh Trang Home sẵn sàng tư vấn miễn phí — từ lựa chọn vật liệu đến thiết kế 3D toàn diện.
+            Đội ngũ Linh Trang Home sẵn sàng tư vấn miễn phí từ lựa chọn vật liệu đến định hướng thiết kế 3D phù hợp với công trình của bạn.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

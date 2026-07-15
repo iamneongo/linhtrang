@@ -27,27 +27,27 @@ if (typeof window !== 'undefined') {
 const heroSlides = [
   {
     image: HERO_URL,
-    sub: 'PHÂN PHỐI ĐỘC QUYỀN TOÀN CẦU',
+    sub: 'GIẢI PHÁP VẬT LIỆU CAO CẤP',
     title1: 'NÂNG TẦM',
     title2: 'KHÔNG GIAN SỐNG',
     title3: 'CỦA BẠN',
-    desc: 'Linh Trang Home mang đến giải pháp hoàn hảo về gạch ốp lát tiên phong, thiết bị vệ sinh thông minh mạ màu PVD và dòng nội thất cao cấp của các thương hiệu châu Âu cho mọi công trình lớn nhỏ.',
+    desc: 'Linh Trang Home mang đến giải pháp đồng bộ về gạch ốp lát, thiết bị vệ sinh mạ PVD và nội thất cao cấp từ các thương hiệu châu Âu cho nhiều loại công trình.',
   },
   {
     image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-    sub: 'XU HƯỚNG SANG TRỌNG ĐƯƠNG ĐẠI',
+    sub: 'PHONG CÁCH SANG TRỌNG ĐƯƠNG ĐẠI',
     title1: 'ĐẲNG CẤP',
-    title2: 'KIẾN TRÚC MỸ MỸ',
-    title3: 'VĨNH CỬU',
-    desc: 'Khám phá tủ thiết bị vệ sinh nhập khẩu nguyên đại từ Đức và Tây Ban Nha. Đường vân tinh thạch, men sứ Nano kháng khuẩn nâng niu từng giác quan gia chủ.',
+    title2: 'KIẾN TRÚC PHÁP',
+    title3: 'TINH TẾ',
+    desc: 'Khám phá bộ sưu tập thiết bị vệ sinh nhập khẩu từ Đức và Tây Ban Nha với thiết kế chỉn chu, lớp men bền đẹp và bảng màu phù hợp nhiều không gian sống.',
   },
   {
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-    sub: 'DÀNH CHO CHỦ NHÂN KIỆT XUẤT',
+    sub: 'GIẢI PHÁP CHO CÔNG TRÌNH CAO CẤP',
     title1: 'THỔI HỒN',
     title2: 'VÀO ĐẠI CÔNG TRÌNH',
-    title3: 'ĐỘC BẢN',
-    desc: 'Mọi sản phẩm tại Linh Trang Home là kết tinh từ các nghệ nhân chế tác vĩ đại bậc nhất thế giới, chắt chiu bảo hành trọn kiếp công trình để kiến tạo bình yên vĩnh cửu.',
+    title3: 'ẤN TƯỢNG',
+    desc: 'Linh Trang Home đồng hành cùng chủ đầu tư, kiến trúc sư và nhà thầu trong việc lựa chọn vật liệu phù hợp để hoàn thiện công trình bền đẹp và có dấu ấn riêng.',
   },
 ];
 

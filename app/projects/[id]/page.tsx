@@ -73,7 +73,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const highlights = [
     { title: 'Vật liệu cao cấp', desc: 'Toàn bộ vật liệu được nhập khẩu nguyên đại từ các thương hiệu hàng đầu châu Âu.' },
     { title: 'Bảo hành trọn đời', desc: 'Linh Trang Home cam kết đồng hành cùng công trình suốt vòng đời sử dụng.' },
-    { title: 'Thiết kế độc bản', desc: 'Mỗi dự án được thiết kế và tư vấn riêng theo yêu cầu đặc thù của chủ đầu tư.' },
+    { title: 'Thiết kế theo yêu cầu', desc: 'Mỗi dự án được thiết kế và tư vấn riêng theo nhu cầu thực tế của chủ đầu tư.' },
   ];
 
   return (

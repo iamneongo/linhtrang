@@ -27,8 +27,9 @@ export function createSlugField(sourceField: string): TextField {
 
 export const imageUrlField: Field = {
   name: 'imageUrl',
-  type: 'text',
-  label: 'URL ảnh',
+  type: 'upload',
+  relationTo: 'media',
+  label: 'Ảnh',
   required: true,
 };
 

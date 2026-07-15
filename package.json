@@ -26,6 +26,7 @@
     "@neondatabase/serverless": "^0.10.4",
     "@payloadcms/db-postgres": "^3.85.1",
     "@payloadcms/next": "^3.85.1",
+    "@payloadcms/translations": "^3.85.1",
     "@payloadcms/richtext-lexical": "^3.85.1",
     "@payloadcms/ui": "^3.85.1",
     "@shadcn/react": "^0.1.0",

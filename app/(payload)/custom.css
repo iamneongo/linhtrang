@@ -1,9 +1,28 @@
 html[data-theme] body:has(.template-default__wrap) {
   background: var(--theme-bg) !important;
   color: var(--theme-text) !important;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  font-kerning: normal;
+  font-variant-ligatures: normal;
+  text-rendering: optimizeLegibility;
 }
 
 html[data-theme] .template-default__wrap {
   background: var(--theme-bg) !important;
   color: var(--theme-text) !important;
+}
+
+html[data-theme] .template-default__wrap [contenteditable="true"],
+html[data-theme] .template-default__wrap textarea,
+html[data-theme] .template-default__wrap input,
+html[data-theme] .template-default__wrap [class*="Lexical"],
+html[data-theme] .template-default__wrap [class*="editor"] {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  font-kerning: normal;
+  font-variant-ligatures: normal;
+  text-rendering: optimizeLegibility;
 }

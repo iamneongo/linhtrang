@@ -1,12 +1,14 @@
 import './lib/loadEnv.ts';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { vi } from '@payloadcms/translations/languages/vi';
 import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 
 import { Categories } from './collections/Categories.ts';
+import { Media } from './collections/Media.ts';
 import { News } from './collections/News.ts';
 import { Products } from './collections/Products.ts';
 import { Projects } from './collections/Projects.ts';
@@ -25,13 +27,18 @@ export default buildConfig({
       titleSuffix: '- Linh Trang Admin',
     },
   },
+  i18n: {
+    supportedLanguages: {
+      vi,
+    },
+  },
   routes: {
     admin: '/admin',
     api: '/cms-api',
     graphQL: '/cms-api/graphql',
     graphQLPlayground: '/cms-api/graphql-playground',
   },
-  collections: [Users, Categories, Products, Projects, News],
+  collections: [Users, Media, Categories, Products, Projects, News],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature(), InlineToolbarFeature()],
   }),

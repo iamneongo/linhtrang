@@ -8,31 +8,31 @@ export default function Footer() {
       id: "reason-1",
       icon: Sparkles,
       title: "Sản phẩm đa dạng",
-      description: "Hàng ngàn mẫu mã gạch, bồn tắm nhập khẩu, thiết bị thông minh đón đầu thời đại mới."
+      description: "Danh mục đa dạng từ gạch ốp lát, thiết bị vệ sinh đến nội thất và phụ kiện hoàn thiện."
     },
     {
       id: "reason-2",
       icon: CheckCircle2,
       title: "Chất lượng đảm bảo",
-      description: "Sản phẩm tuyển chọn chính hãng 100%, có chứng chỉ CO/CQ xuất xứ minh bạch nhất."
+      description: "Sản phẩm được tuyển chọn từ các thương hiệu uy tín, có thông tin xuất xứ rõ ràng."
     },
     {
       id: "reason-3",
       icon: BadgePercent,
       title: "Giá bán hợp lý",
-      description: "Luôn mang lại bảng chiết khấu sát sườn tốt nhất cùng với muôn vàn gói thầu rẻ ưu đãi."
+      description: "Báo giá minh bạch, linh hoạt theo quy mô công trình và nhu cầu thực tế."
     },
     {
       id: "reason-4",
       icon: Truck,
-      title: "Giao nhận siêu tốc",
-      description: "Hệ thống bãi trung chuyển lớn khắp 2 miền Nam-Bắc, đội xe tải sẵn sàng trực chiến 24h."
+      title: "Giao nhận chủ động",
+      description: "Hỗ trợ giao hàng, phối hợp tiến độ và khảo sát theo kế hoạch triển khai của công trình."
     },
     {
       id: "reason-5",
       icon: ShieldCheck,
       title: "Hậu mãi chu đáo",
-      description: "Chính sách đổi trả minh bạch an tâm nhất kèm theo dịch vụ kỹ thuật khẩn cấp bất kể giờ giấc."
+      description: "Chính sách bảo hành và hỗ trợ sau bán hàng rõ ràng, giúp khách hàng yên tâm khi sử dụng."
     }
   ];
 
@@ -104,7 +104,7 @@ export default function Footer() {
                 height="38px"
               />
               <p className="text-text-secondary leading-relaxed pr-2">
-                Linh Trang Home tự hào là đơn vị hàng đầu cung cấp giải pháp, thương mại, tư vấn và thi công trọn gói gạch ốp lát cao cấp, thiết bị nhà tắm, thiết bị thông minh bồn tắm và phụ kiện hoàn thiện mỹ học nội ngoại thất tại Việt Nam. 
+                Linh Trang Home cung cấp giải pháp vật liệu hoàn thiện, thiết bị phòng tắm và nội thất cao cấp, đồng hành cùng khách hàng từ khâu chọn mẫu đến hoàn thiện không gian.
               </p>
               
               {/* Social Channels */}
@@ -153,7 +153,7 @@ export default function Footer() {
                 CHÍNH SÁCH
               </h5>
               <ul className="space-y-3 font-semibold text-text-secondary">
-                <li><a href="#policy-1" className="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li>
+                <li><a href="#policy-1" className="hover:text-white transition-colors">Chính sách bảo hành</a></li>
                 <li><a href="#policy-2" className="hover:text-white transition-colors">Chính sách đổi trả minh bạch</a></li>
                 <li><a href="#policy-3" className="hover:text-white transition-colors">Chính sách giao nhận vận chuyển</a></li>
                 <li><a href="#policy-4" className="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li>
@@ -213,7 +213,7 @@ export default function Footer() {
           <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-text-secondary uppercase tracking-wider font-semibold">
             <p>© {currentYear} LINH TRANG HOME, All rights reserved.</p>
             <p className="flex items-center gap-1">
-              <span>Thiết kế &amp; phát triển nghệ thuật bởi</span>
+              <span>Thiết kế &amp; phát triển bởi</span>
               <span className="text-white font-bold text-glow">Linh Trang Home</span>
             </p>
           </div>

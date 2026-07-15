@@ -9,6 +9,7 @@ export async function GET() {
     const [categoryResult, productResult] = await Promise.all([
       payload.find({
         collection: 'categories',
+        depth: 1,
         limit: 100,
         pagination: false,
         sort: 'sortOrder',

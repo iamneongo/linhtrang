@@ -10,21 +10,21 @@ export default function AboutSection() {
       icon: Sparkles,
       value: "10+",
       label: "Năm kinh nghiệm",
-      description: "Đồng hành cùng mọi đại công trình lớn"
+      description: "Đồng hành cùng nhiều công trình dân dụng và nghỉ dưỡng"
     },
     {
       id: "stat-2",
       icon: Users2,
       value: "5000+",
       label: "Khách hàng tin tưởng",
-      description: "Sự hài lòng tuyệt đối làm kim chỉ nam"
+      description: "Tập trung vào trải nghiệm tư vấn rõ ràng và chuyên nghiệp"
     },
     {
       id: "stat-3",
       icon: Building2,
       value: "1000+",
       label: "Dự án hoàn thành",
-      description: "Biệt thự, đại lộ sảnh và resort nghỉ dưỡng"
+      description: "Biệt thự, căn hộ, khách sạn và resort nghỉ dưỡng"
     },
     {
       id: "stat-4",
@@ -92,7 +92,7 @@ export default function AboutSection() {
             </h2>
             
             <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
-              Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp gạch ốp lát cao cấp, thiết bị vệ sinh nhập khẩu và nội thất tinh tế hàng đầu, Linh Trang Home luôn nỗ lực không ngừng nghỉ để kiến tạo nên những công trình đẳng cấp quốc tế, đem lại sự an tâm tuyệt đối cho khách hàng và đối tác xây dựng.
+              Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp gạch ốp lát cao cấp, thiết bị vệ sinh nhập khẩu và nội thất chọn lọc, Linh Trang Home mang đến giải pháp phù hợp cho từng phong cách không gian và nhu cầu sử dụng thực tế.
             </p>
 
             {/* Bullets lists */}
@@ -106,7 +106,7 @@ export default function AboutSection() {
                     Sản phẩm chính hãng 100%
                   </h4>
                   <p className="text-xs text-text-secondary">
-                    Toàn bộ vật liệu, thiết bị vệ sinh được tuyển chọn khắt khe trực tiếp từ hệ thống đối tác quốc tế chất lượng uy tín nhất.
+                    Toàn bộ vật liệu và thiết bị vệ sinh được tuyển chọn từ các đối tác uy tín, đi kèm thông tin xuất xứ và chất lượng rõ ràng.
                   </p>
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default function AboutSection() {
                     Giá cả đi đôi với chất lượng
                   </h4>
                   <p className="text-xs text-text-secondary">
-                    Chính sách giá minh bạch, tối ưu, ổn định bền vững giúp chủ đầu tư kiểm soát chi phí thi công xây dựng an tâm nhất.
+                    Chính sách giá minh bạch và tư vấn theo đúng nhu cầu giúp chủ đầu tư chủ động kiểm soát ngân sách cho từng hạng mục.
                   </p>
                 </div>
               </div>
@@ -131,10 +131,10 @@ export default function AboutSection() {
                 </div>
                 <div>
                   <h4 className="font-headline text-sm font-bold text-white uppercase tracking-wider mb-1">
-                    Chính sách hậu mãi & bảo hành vàng
+                    Hậu mãi và bảo hành rõ ràng
                   </h4>
                   <p className="text-xs text-text-secondary">
-                    Linh Trang Home đồng hành trọn đời mọi dự án. Đội ngũ kỹ thuật túc trực 24/7 giải quyết mọi rủi ro về vật liệu dứt điểm siêu tốc.
+                    Linh Trang Home hỗ trợ khách hàng trong suốt quá trình lựa chọn, lắp đặt và sử dụng với chính sách hậu mãi minh bạch, dễ theo dõi.
                   </p>
                 </div>
               </div>

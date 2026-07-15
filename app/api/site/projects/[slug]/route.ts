@@ -15,6 +15,7 @@ export async function GET(_: Request, { params }: Args) {
     const payload = await getPayloadClient();
     const result = await payload.find({
       collection: 'projects',
+      depth: 1,
       limit: 1,
       pagination: false,
       where: {

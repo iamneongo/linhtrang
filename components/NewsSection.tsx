@@ -170,7 +170,7 @@ export default function NewsSection({
                 TƯ VẤN MIỄN PHÍ
               </h3>
               <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                Để lại thông tin bên dưới, thiết kế sư hàng đầu từ Linh Trang Home sẽ chủ động kết nối để tư vấn trọn gói thiết kế nhà 3D miễn phí cho bạn.
+                Để lại thông tin bên dưới, đội ngũ tư vấn của Linh Trang Home sẽ chủ động liên hệ để hỗ trợ lựa chọn vật liệu và định hướng thiết kế 3D phù hợp.
               </p>
 
               {/* Consultation Submit Form */}
@@ -248,7 +248,7 @@ export default function NewsSection({
                   <div className="w-7 h-7 bg-white/5 rounded-full flex items-center justify-center text-primary-red">
                     <User className="w-4 h-4" />
                   </div>
-                  <span className="text-text-secondary">Đại sứ: </span>
+                  <span className="text-text-secondary">Hotline: </span>
                   <span className="text-white font-bold">0977 247 623</span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -295,7 +295,7 @@ export default function NewsSection({
               </h4>
               <p className="text-sm text-text-secondary leading-relaxed mb-6">
                 Cảm ơn quý khách đã tin cậy nâng tầm không gian sống cùng Linh Trang Home. 
-                Đội ngũ đại sứ thương hiệu từ chi nhánh gần nhất sẽ trực tiếp liên hệ tư vấn chuyên môn trong vòng 15-30 phút nữa.
+                Đội ngũ tư vấn sẽ chủ động liên hệ trong thời gian sớm nhất để hỗ trợ báo giá và phương án phù hợp.
               </p>
 
               <button

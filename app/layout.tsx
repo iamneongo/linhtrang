@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'LINH TRANG HOME | Nâng Tầm Không Gian Sống',
   description:
-    'Linh Trang Home mang đến giải pháp hoàn hảo về gạch ốp lát tiên phong, thiết bị vệ sinh thông minh mạ màu PVD và dòng nội thất cao cấp của các thương hiệu châu Âu.',
+    'Linh Trang Home cung cấp giải pháp gạch ốp lát, thiết bị vệ sinh mạ PVD và nội thất cao cấp từ các thương hiệu châu Âu.',
 };
 
 export default function RootLayout({

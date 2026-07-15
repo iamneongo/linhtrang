@@ -84,7 +84,7 @@ export default function ChatBot() {
     return {
       id: 'greet-1',
       role: 'model',
-      content: `Dạ, Linh Trang Home kính chào Quý khách! 🌹\n\nTôi là **MIA**, Trợ lý thiết kế ảo cao cấp của showroom. Tôi có thể giúp gì cho Quý khách hôm nay?\n\n- 💎 **Tư vấn gạch ốp lát** nhập khẩu Tây Ban Nha & Ý\n- 🛁 **Báo giá thiết bị vệ sinh** thông minh\n- 🛋️ **Khám phá nội thất** & đèn chùm pha lê\n- 🏡 **Gợi ý thiết kế phong thủy** & dự án tiêu biểu\n\nQuý khách muốn tìm hiểu về hạng mục nào ạ?`,
+      content: `Dạ, Linh Trang Home kính chào Quý khách!\n\nTôi là **MIA**, trợ lý tư vấn của showroom. Tôi có thể hỗ trợ Quý khách hôm nay về:\n\n- 💎 **Tư vấn gạch ốp lát** nhập khẩu Tây Ban Nha và Ý\n- 🛁 **Báo giá thiết bị vệ sinh** và phụ kiện phòng tắm\n- 🛋️ **Gợi ý nội thất** và đèn trang trí phù hợp không gian\n- 🏡 **Tham khảo dự án tiêu biểu** và phong cách thiết kế phù hợp\n\nQuý khách muốn tìm hiểu hạng mục nào trước ạ?`,
       timestamp: new Date()
     };
   }
@@ -119,12 +119,12 @@ export default function ChatBot() {
           role: 'model',
           content: `Dạ, MIA đã nhận được hình ảnh không gian của Quý khách! 📸
 
-Qua hình ảnh sơ bộ, MIA nhận thấy đây là một không gian có kết cấu đẹp. Để nâng tầm đẳng cấp phối cảnh 3D:
-- 💎 **Về gạch ốp lát:** Đề xuất sử dụng **Gạch Vân Đá Marble Calacatta Tây Ban Nha (LT-MARBLE-01)** khổ lớn để lát nền giúp phòng rộng rãi và sang trọng vượt bậc.
-- 🪵 **Về mảng tường nhấn:** Nên kết hợp **Tấm Ốp Lam Sóng Charcoal Gỗ Óc Chó Ý (LT-CHARCOAL-01)** ở vách ti vi hoặc đầu giường để tạo chiều sâu ấm áp và tiêu âm cực tốt.
-- 🛁 **Nếu đây là phòng tắm:** **Bồn Cầu Thông Minh Linh Trang Luxury One (LT-TOILET-01)** kết hợp với **Bồn Tắm Nằm Đá Nhân Tạo Solid Surface (LT-TUB-03)** sẽ là sự lựa chọn hoàn hảo của giới thượng lưu.
+Qua hình ảnh sơ bộ, MIA gợi ý một số hướng triển khai để hoàn thiện phối cảnh:
+- 💎 **Về gạch ốp lát:** Có thể tham khảo **Gạch Vân Đá Marble Calacatta Tây Ban Nha (LT-MARBLE-01)** khổ lớn để tạo cảm giác rộng và sáng hơn cho không gian.
+- 🪵 **Về mảng tường nhấn:** Có thể kết hợp **Tấm Ốp Lam Sóng Charcoal Gỗ Óc Chó Ý (LT-CHARCOAL-01)** tại vách TV hoặc đầu giường để tăng chiều sâu và cảm giác ấm cúng.
+- 🛁 **Nếu đây là phòng tắm:** **Bồn Cầu Thông Minh Linh Trang Luxury One (LT-TOILET-01)** kết hợp với **Bồn Tắm Nằm Đá Nhân Tạo Solid Surface (LT-TUB-03)** là một phương án đáng cân nhắc cho không gian cao cấp.
 
-Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên hệ đo đạc thực tế và vẽ bản phối cảnh 3D chuyên sâu hoàn toàn miễn phí không ạ?`,
+Quý khách có muốn MIA đăng ký để đội ngũ Linh Trang Home liên hệ khảo sát và tư vấn phối cảnh 3D chi tiết hơn không ạ?`,
           timestamp: new Date()
         };
         setMessages((prev) => [...prev, botMsg]);
@@ -175,7 +175,7 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
       const errMsg: Message = {
         id: `msg-${Date.now()}-err`,
         role: 'model',
-        content: `Dạ, xin lỗi Quý khách. Cổng kết nối tư vấn gặp chút gián đoạn. Anh/chị có thể kết nối Hotline **0977.247.623** để Linh Trang tư vấn chu đáo nhất ạ!`,
+          content: `Dạ, xin lỗi Quý khách. Cổng kết nối tư vấn đang gặp chút gián đoạn. Anh/chị có thể liên hệ Hotline **0977.247.623** để Linh Trang Home hỗ trợ nhanh nhất ạ!`,
         timestamp: new Date()
       };
       setMessages((prev) => [...prev, errMsg]);
@@ -202,8 +202,8 @@ Quý khách có muốn MIA đăng ký cho kiến trúc sư Linh Trang Home liên
   const suggestions = [
     { label: 'Chọn gạch lát phòng khách', text: 'Tư vấn cho tôi mẫu gạch lát sàn phòng khách biệt thự sang trọng.' },
     { label: 'Báo giá bồn cầu thông minh', text: 'Tôi muốn báo giá và tìm hiểu mã bồn cầu thông minh LT-TOILET-01.' },
-    { label: 'Sản phẩm mạ vàng PVD', text: 'Giới thiệu các thiết bị vệ sinh mạ PVD cao cấp cao cấp.' },
-    { label: 'Xem dự án tiêu biểu', text: 'Gợi ý các dự án biệt thự hoặc căn hộ Linh Trang đã thi công bộc lộ chất lượng.' }
+    { label: 'Sản phẩm mạ vàng PVD', text: 'Giới thiệu các thiết bị vệ sinh mạ PVD cao cấp.' },
+    { label: 'Xem dự án tiêu biểu', text: 'Gợi ý các dự án biệt thự hoặc căn hộ tiêu biểu mà Linh Trang đã triển khai.' }
   ];
 
   // Micro markdown formatting for bold, bullets, list items, emojis and numbers

@@ -34,7 +34,7 @@ export const categories: Category[] = [
     name: 'TRANG TRÍ NỘI THẤT',
     iconName: 'Flower',
     imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCaAMveGFtOju8FTN8_P1GqP5mCw2Wxa9GunivIOCebXayjL5XqeeI1H3lYu-yu_lOktTaxT9uaZxYlOLiWJDINSgAzzo5D-hK8orSohjwrS-5Pc7_fJuK4clf0SR8DtBodbPAQf1SbMon6cqIbfYovJYEDnGzcsFEEKd6oLYYQsdLUfiG_xP3kBlb95sgIRi8o06_c6sZRcPFr3RiV_FlChjvbr1WjTmR_tiBopqCmCmysY7trkx1XjaSb_JBIy6T9HaDarRpHAnE',
-    description: 'Lọ hoa bằng gốm điêu khắc, tranh sơn dầu nghệ thuật, gương bỉ tráng bạc cao cấp kiến tạo không gian duy mỹ.',
+    description: 'Lọ hoa gốm điêu khắc, tranh sơn dầu nghệ thuật và gương Bỉ tráng bạc giúp hoàn thiện không gian tinh tế.',
     badge: 'Tinh tế - Đẳng cấp'
   },
   {
@@ -309,7 +309,7 @@ export const blogPosts: BlogPost[] = [
     imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcwwEO4ZR8Ri2WN8nVSd1-hNZcqqSTyLbfNe7Mzmoyfq8bbaqMvc-xwkDeVtCCmA99SLwyHctfGdKHzRqpDEvROUPv1hCSCvV8FuKGf9YGkW9xT5LIMkwZA5-8gYDgvYQfIfiawMolRmz5Bbbhr6NhizbbEY6cANZLxGW2eqmBwvmaOo6I9DnchpuqqZx9SFUS3Np6ZXD6PJvRQraWBqwA1ueElZgGqQpfPBneB0RPIKaArPrvyK4iU-66QC7Z7Ui4YlPv0-6ZAYI',
     date: '15/05/2026',
     author: 'KTS. Lê Anh Đức',
-    summary: 'Phòng tắm sang trọng không thể thiếu các trợ thủ công nghệ tối tân. Điểm danh những mẫu bồn cầu thông minh và sen tắm độc bản.',
+    summary: 'Phòng tắm sang trọng cần những thiết bị phù hợp cả về công năng lẫn thẩm mỹ. Cùng tham khảo các mẫu bồn cầu thông minh và sen tắm nổi bật.',
     content: `Phòng tắm không còn đơn thuần là khu vực vệ sinh mà đã nâng tầm thành "Home Spa" - không gian rũ bỏ bụi bặm, kiến tạo bình yên sau ngày dài học tập và làm việc căng thẳng. Vì thế, việc nâng cấp thiết bị vệ sinh thông minh là khoản đầu tư thông thái mang lại giá trị thực tế hàng giờ cho sức khỏe cả gia đình.
 
 ### Top 5 bảo vật phòng tắm đáng đồng tiền bát gạo tại Linh Trang Home:

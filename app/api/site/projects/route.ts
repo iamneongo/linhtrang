@@ -7,6 +7,7 @@ export async function GET() {
     const payload = await getPayloadClient();
     const result = await payload.find({
       collection: 'projects',
+      depth: 1,
       limit: 100,
       pagination: false,
       sort: 'sortOrder',
