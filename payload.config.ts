@@ -8,6 +8,8 @@ import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 
 import { Categories } from './collections/Categories.ts';
+import { DealerCustomers } from './collections/DealerCustomers.ts';
+import { LoyalCustomers } from './collections/LoyalCustomers.ts';
 import { Media } from './collections/Media.ts';
 import { News } from './collections/News.ts';
 import { Products } from './collections/Products.ts';
@@ -38,7 +40,7 @@ export default buildConfig({
     graphQL: '/cms-api/graphql',
     graphQLPlayground: '/cms-api/graphql-playground',
   },
-  collections: [Users, Media, Categories, Products, Projects, News],
+  collections: [Users, Media, Categories, Products, Projects, News, DealerCustomers, LoyalCustomers],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature(), InlineToolbarFeature()],
   }),
